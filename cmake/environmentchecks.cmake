@@ -1,0 +1,16 @@
+
+find_package(Python COMPONENTS Interpreter Development)
+find_package(SWIG)
+
+if (Python_VERSION VERSION_GREATER 3.6)
+  set(HAVE_SUITABLE_PYTHON TRUE)
+endif()
+
+if (SWIG_VERSION VERSION_GREATER 4.0)
+    set(HAVE_SUITABLE_SWIG TRUE)
+endif()
+
+if (HAVE_SUITABLE_PYTHON AND HAVE_SUITABLE_SWIG)
+    set(PYTHON_BINDINGS_AVAILABLE TRUE)
+endif()
+

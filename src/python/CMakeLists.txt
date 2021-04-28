@@ -1,27 +1,12 @@
-# OpenCMISS-Zinc Library
+# SWIGZinc Library
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-find_program(VIRTUALENV_EXEC virtualenv)
-mark_as_advanced(VIRTUALENV_EXEC)
-
 if (CMAKE_CONFIGURATION_TYPES)
     set(CFG_DIR /$<CONFIG>)
     set(CFG_INSTALL_DIR /\${CMAKE_INSTALL_CONFIG_NAME})
-endif ()
-# Bindings options
-set(ZINC_VIRTUALENV_INSTALL_PREFIX "${ZINC_VIRTUALENV_INSTALL_PREFIX}" CACHE PATH "Install prefix for the virtualenv Zinc library.")
-
-if (NOT DEFINED ZINC_USE_VIRTUALENV)
-    set(ZINC_USE_VIRTUALENV TRUE)
-endif ()
-set(ZINC_USE_VIRTUALENV ${ZINC_USE_VIRTUALENV} CACHE BOOL "Install Zinc into virtual environment.")
-
-if (NOT EXISTS "${VIRTUALENV_EXEC}")
-    set(ZINC_USE_VIRTUALENV FALSE CACHE BOOL "Install Zinc into virtual environment." FORCE)
-    message(STATUS "The program virtualenv was not found disabling it's use.")
 endif ()
 
 # Create Python bindings for the Zinc library.
@@ -29,9 +14,6 @@ set(ZINC_PYTHON_PREFERRED_VERSION "" CACHE STRING "Identify your preferred versi
 
 # SWIG has already been found at this point.
 include(${SWIG_USE_FILE})
-
-findpython_clear_cache_variables()
-find_package(Python ${ZINC_PYTHON_PREFERRED_VERSION} COMPONENTS Interpreter Development QUIET)
 
 if("${Python_VERSION_MAJOR}" STREQUAL "3")
     set(PYTHONLIBS_SWIG_FLAGS -py3)
@@ -44,7 +26,7 @@ file(RELATIVE_PATH _REL_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_MODULE_TAR
 
 # We have to set the include directories onto the directory because the swig
 # wrapping process requires the include directories.
-include_directories(${ZINC_API_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS})
+#include_directories(${ZINC_API_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS})
 
 # Suppress the overload operator warning for Python.
 set(CMAKE_SWIG_FLAGS -w381 -w382 -w361 -w362 ${PYTHONLIBS_SWIG_FLAGS})
@@ -88,7 +70,7 @@ set(INTERFACE_SRCS
     ../interface/timenotifier.i
     ../interface/timesequence.i)
 
-set_source_files_properties(${INTERFACE_SRCS} PROPERTIES CPLUSPLUS ON)
+set_source_files_properties(${INTERFACE_SRCS} PROPERTIES CPLUSPLUS ON USE_TARGET_INCLUDE_DIRECTORIES TRUE)
 
 set(BASE_PYTHON_PACKAGE_DIR "${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}")
 set(OPENCMISS_PYTHON_PACKAGE_DIR "${BASE_PYTHON_PACKAGE_DIR}/opencmiss")
@@ -98,6 +80,7 @@ set(CMAKE_SWIG_OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/modules_python_files")
 set(SWIG_MODULE_TARGETS )
 set(MODULE_PY_FILES )
 set(SETUP_PY_PACKAGE_FILES "'$<TARGET_FILE_NAME:zinc>'")
+message(STATUS "SETUP_PY_PACKAGE_FILES: ${SETUP_PY_PACKAGE_FILES}")
 if (NOT WIN32)
     list(APPEND SETUP_PY_PACKAGE_FILES "'$<TARGET_SONAME_FILE_NAME:zinc>'")
     set(_GENERATOR_EXPRESSION_ZINC_SONAME $<TARGET_SONAME_FILE:zinc>)
@@ -105,14 +88,11 @@ endif ()
 foreach(SWIG_INTERFACE ${INTERFACE_SRCS})
     get_filename_component(MODULE_NAME ${SWIG_INTERFACE} NAME_WE)
     list(APPEND MODULE_PY_FILES ${MODULE_NAME}.py)
-    if (CMAKE_VERSION VERSION_GREATER 3.7.2)
-        swig_add_library(${MODULE_NAME}
-          LANGUAGE python
-          SOURCES ${SWIG_INTERFACE})
-    else ()
-        swig_add_module(${MODULE_NAME} python ${SWIG_INTERFACE})
-    endif ()
-    swig_link_libraries(${MODULE_NAME} Python::Python zinc)
+    swig_add_library(${MODULE_NAME}
+      LANGUAGE python
+      SOURCES ${SWIG_INTERFACE})
+    target_link_libraries(${MODULE_NAME} PUBLIC Python::Python zinc)
+
     set(MODULE_TARGET ${SWIG_MODULE_${MODULE_NAME}_REAL_NAME})
     # Disable use of Debug Python libraries when not present on Windows
     # See http://stackoverflow.com/questions/11311877/creating-a-dll-from-a-wrapped-cpp-file-with-swig
@@ -181,9 +161,9 @@ endif()
 message(STATUS "ZINC_PYTHON_DEVELOPER_VERSION: ${ZINC_PYTHON_DEVELOPER_VERSION}")
 
 # Get a pretty system name.
-GET_SYSTEM_NAME(SYSTEM_NAME)
+#GET_SYSTEM_NAME(SYSTEM_NAME)
 set(PYPI_PACKAGE_NAME opencmiss.zinc)
-set(PYPI_SOURCE_TARGZ_VERSION "${Zinc_VERSION}${ZINC_PYTHON_DEVELOPER_VERSION}-${PYZINC_ARCHITECTURE}-${SYSTEM_NAME}-Python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
+set(PYPI_SOURCE_TARGZ_VERSION "${SWIGZinc_VERSION}${ZINC_PYTHON_DEVELOPER_VERSION}-${PYZINC_ARCHITECTURE}-${CMAKE_SYSTEM_NAME}-Python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
 
 ################################################################
 # Generate the required package files

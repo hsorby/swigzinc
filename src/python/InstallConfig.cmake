@@ -22,12 +22,3 @@ install(FILES "${BASE_PYTHON_PACKAGE_DIR}/README.txt"
     COMPONENT PythonBindings
 )
 
-# Install step for virtual environment (if given)
-if (ZINC_USE_VIRTUALENV)
-    # Variables required for OCPythonBindingsVirtualEnv.
-    set(VIRTUALENV_INSTALL_PREFIX ${ZINC_VIRTUALENV_INSTALL_PREFIX})
-    set(PYTHON_PACKAGE_CURRENT_NAME zinc)
-    # Virtual environment creation target.
-    include(OCPythonBindingsVirtualEnv)
-endif ()
-
