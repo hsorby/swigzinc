@@ -187,7 +187,7 @@ endif()
 configure_file(zinc__init__.in.py "${CMAKE_CURRENT_BINARY_DIR}/zinc__init__.py" @ONLY)
 
 foreach(_file ${ADDITIONAL_PACKAGE_FILES})
-    configure_file(${_file} "${CMAKE_CURRENT_BINARY_DIR}/${_file}")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${_file}" "${CMAKE_CURRENT_BINARY_DIR}/${_file}")
 endforeach()
 #set(MANIFEST_IN_FILE "${CMAKE_CURRENT_BINARY_DIR}/MANIFEST.in")
 #configure_file( "${CMAKE_CURRENT_SOURCE_DIR}/MANIFEST.in" "${MANIFEST_IN_FILE}")
