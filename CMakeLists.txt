@@ -26,6 +26,16 @@ find_package(Zinc CONFIG REQUIRED)
 
 include(environmentchecks)
 
+if(NOT IS_MULTI_CONFIG)
+  set(_PARAM_ANNOTATION "Choose the type of build, options are: None(CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.")
+  set(SWIGZINC_BUILD_TYPE "Debug" CACHE STRING "${_PARAM_ANNOTATION}")
+  if(DEFINED BUILD_TYPE)
+    set(SWIGZINC_BUILD_TYPE ${BUILD_TYPE} CACHE STRING "${_PARAM_ANNOTATION}" FORCE)
+  endif()
+endif()
+unset(BUILD_TYPE CACHE)
+set(CMAKE_BUILD_TYPE ${SWIGZINC_BUILD_TYPE} CACHE INTERNAL "Internalise CMAKE_BUILD_TYPE, manipulate via SWIGZINC_BUILD_TYPE" FORCE)
+
 set(_PARAM_ANNOTATION "Enable Python bindings.")
 if(PYTHON_BINDINGS_AVAILABLE)
   set(SWIGZINC_PYTHON_BINDINGS ON CACHE BOOL "${_PARAM_ANNOTATION}")
@@ -39,6 +49,9 @@ unset(PYTHON_BINDINGS CACHE)
 
 
 add_subdirectory(src)
+
+enable_testing()
+add_subdirectory(tests)
 
 message(STATUS "Summary")
 message(STATUS "- Using Zinc: ${Zinc_DIR}")
