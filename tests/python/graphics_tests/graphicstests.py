@@ -11,6 +11,7 @@ Created on May 22, 2013
 
 @author: hsorby
 '''
+import os
 import unittest
 
 from opencmiss.zinc.context import Context
@@ -79,45 +80,57 @@ class GraphicsTestCase(unittest.TestCase):
         sv = svm.createSceneviewer(Sceneviewer.BUFFERING_MODE_DOUBLE, Sceneviewer.STEREO_MODE_MONO)
         
         result = sv.setBackgroundColourComponentRGB(0.3, 0.8, 0.65)
-        self.assertEqual(1, result)
+        self.assertEqual(status.OK, result)
         (result, rgb) = sv.getBackgroundColourRGB()
-        self.assertEqual(1, result)
+        self.assertEqual(status.OK, result)
         self.assertEqual([0.3, 0.8, 0.65], rgb)
         
         result = sv.setBackgroundColourRGB([0.1, 0.9, 0.4])
-        self.assertEqual(1, result)
+        self.assertEqual(status.OK, result)
         (result, rgb) = sv.getBackgroundColourRGB()
-        self.assertEqual(1, result)
+        self.assertEqual(status.OK, result)
         self.assertEqual([0.1, 0.9, 0.4], rgb)
         
         self.assertRaises(TypeError, sv.setBackgroundColourRGB, [3.0, 2.0])
         
     def testSceneExport(self):
-        self.root_region.readFile('resource/cube.exformat')
+        path = os.path.dirname(os.path.realpath(__file__))
+        result = self.root_region.readFile(path + '/../resource/cube.exformat')
+        self.assertEqual(status.OK, result)
         surfaces = self.scene.createGraphicsSurfaces()
-        coordinatesField = self.root_region.getFieldmodule().findFieldByName("coordinates");
+        coordinatesField = self.root_region.getFieldmodule().findFieldByName("coordinates")
+        self.assertTrue(coordinatesField.isValid())
         result = surfaces.setCoordinateField(coordinatesField)
-        self.assertEqual(1, result)
-        si = self.scene.createStreaminformationScene();
+        self.assertEqual(status.OK, result)
+        si = self.scene.createStreaminformationScene()
         si.setIOFormat(si.IO_FORMAT_THREEJS)
         result = si.getNumberOfResourcesRequired()
         self.assertEqual(2, result)
         result = si.setIODataType(si.IO_DATA_TYPE_COLOUR)
-        self.assertEqual(1, result)
-        memeory_sr = si.createStreamresourceMemory();
+        self.assertEqual(status.OK, result)
+        memory_sr1 = si.createStreamresourceMemory()
+        memory_sr2 = si.createStreamresourceMemory()
         result = self.scene.write(si)
-        self.assertEqual(1, result)
-        result, outputstring = memeory_sr.getBuffer()
-        self.assertEqual(1, result)
-        stringLoc = outputstring.find('vertices')
-        self.assertNotEqual(-1, stringLoc, 'keyword \'vertices\' not found')
+        self.assertEqual(status.OK, result)
+        result, outputBytes1 = memory_sr1.getBuffer()
+        self.assertEqual(status.OK, result)
+        self.assertIsNotNone(outputBytes1)
+        self.assertTrue(b'Surfaces' in outputBytes1, 'keyword \'vertices\' not found')
+        result, outputBytes2 = memory_sr2.getBuffer()
+        self.assertEqual(status.OK, result)
+        self.assertIsNotNone(outputBytes2)
+        self.assertTrue(b'vertices' in outputBytes2, 'keyword \'vertices\' not found')
         
     def testGraphicsToGlyph(self):
-        self.root_region.readFile('resource/cube.exformat')
+        path = os.path.dirname(os.path.realpath(__file__))
+        print(path + '/../resource/cube.exformat')
+        result = self.root_region.readFile(path + '/../resource/cube.exformat')
+        self.assertEqual(status.OK, result)
         surfaces = self.scene.createGraphicsSurfaces()
-        coordinatesField = self.root_region.getFieldmodule().findFieldByName("coordinates");
+        coordinatesField = self.root_region.getFieldmodule().findFieldByName("coordinates")
+        self.assertTrue(coordinatesField.isValid())
         result = surfaces.setCoordinateField(coordinatesField)
-        self.assertEqual(1, result)
+        self.assertEqual(status.OK, result)
         glyphModule = self.context.getGlyphmodule()
         glyph = glyphModule.createStaticGlyphFromGraphics(surfaces)
         self.assertTrue(glyph.isValid())

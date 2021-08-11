@@ -39,6 +39,12 @@ class RegionTestCase(unittest.TestCase):
         self.assertTrue(tr.isValid())
         self.findRegion(rr, '/bob/rick/mark')
 
+    def testGetContext(self):
+        rr = self.c.getDefaultRegion()
+        context = rr.getContext()
+        self.assertTrue(context.isValid())
+        self.assertEqual(context, self.c)
+
     def testWriteFieldNames(self):
         """
         This also tests SWIG typemaps for passing strings and lists of string
@@ -50,19 +56,19 @@ class RegionTestCase(unittest.TestCase):
         bob = fm.createFieldFiniteElement(1)
         self.assertTrue(bob.isValid())
         # following calls test SWIG wrappers for setting/getting single strings
-        self.assertEquals(RESULT_OK, bob.setName("bob"))
-        self.assertEquals("bob", bob.getName())
+        self.assertEqual(RESULT_OK, bob.setName("bob"))
+        self.assertEqual("bob", bob.getName())
         fred = fm.createFieldFiniteElement(1)
         self.assertTrue(fred.isValid())
-        self.assertEquals(RESULT_OK, fred.setName("fred"))
+        self.assertEqual(RESULT_OK, fred.setName("fred"))
         joe = fm.createFieldFiniteElement(1)
         self.assertTrue(joe.isValid())
-        self.assertEquals(RESULT_OK, joe.setName("joe"))
+        self.assertEqual(RESULT_OK, joe.setName("joe"))
         nodes = fm.findNodesetByFieldDomainType(Field.DOMAIN_TYPE_NODES)
         nt = nodes.createNodetemplate()
-        self.assertEquals(RESULT_OK, nt.defineField(bob))
-        self.assertEquals(RESULT_OK, nt.defineField(fred))
-        self.assertEquals(RESULT_OK, nt.defineField(joe))
+        self.assertEqual(RESULT_OK, nt.defineField(bob))
+        self.assertEqual(RESULT_OK, nt.defineField(fred))
+        self.assertEqual(RESULT_OK, nt.defineField(joe))
         node = nodes.createNode(1, nt)
         self.assertTrue(node.isValid())
 
@@ -84,9 +90,9 @@ class RegionTestCase(unittest.TestCase):
         self.assertEqual(RESULT_OK, result)
         result, output = mr.getBuffer()
         self.assertEqual(RESULT_OK, result)
-        self.assertTrue("bob" in output)
-        self.assertFalse("fred" in output)
-        self.assertTrue("joe" in output)
+        self.assertTrue(b"bob" in output)
+        self.assertFalse(b"fred" in output)
+        self.assertTrue(b"joe" in output)
 
 def suite():
     #import ImportTestCase

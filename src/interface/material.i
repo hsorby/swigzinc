@@ -16,6 +16,7 @@
 %include "doublevaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 
+%import "context.i"
 %import "field.i"
 %import "font.i"
 
