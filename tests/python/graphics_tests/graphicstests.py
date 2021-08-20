@@ -15,8 +15,10 @@ import os
 import unittest
 
 from opencmiss.zinc.context import Context
-from opencmiss.zinc.glyph import Glyph
 from opencmiss.zinc.field import Field
+from opencmiss.zinc.glyph import Glyph
+from opencmiss.zinc.graphics import Graphics
+from opencmiss.zinc.scenecoordinatesystem import SCENECOORDINATESYSTEM_LOCAL, SCENECOORDINATESYSTEM_WORLD, ScenecoordinatesystemEnumFromString, ScenecoordinatesystemEnumToString
 from opencmiss.zinc.sceneviewer import Sceneviewer
 from opencmiss.zinc.streamscene import StreaminformationScene
 from opencmiss.zinc import status
@@ -135,7 +137,28 @@ class GraphicsTestCase(unittest.TestCase):
         glyph = glyphModule.createStaticGlyphFromGraphics(surfaces)
         self.assertTrue(glyph.isValid())
 
-        
+    def testScenecoordinatesystem(self):
+        self.assertEqual("LOCAL", ScenecoordinatesystemEnumToString(SCENECOORDINATESYSTEM_LOCAL))
+        self.assertEqual("WORLD", ScenecoordinatesystemEnumToString(SCENECOORDINATESYSTEM_WORLD))
+        self.assertEqual(SCENECOORDINATESYSTEM_LOCAL, ScenecoordinatesystemEnumFromString("LOCAL"))
+        self.assertEqual(SCENECOORDINATESYSTEM_WORLD, ScenecoordinatesystemEnumFromString("WORLD"))
+        graphics = self.scene.createGraphicsSurfaces()
+        self.assertTrue(graphics.isValid())
+        self.assertEqual(SCENECOORDINATESYSTEM_LOCAL, graphics.getScenecoordinatesystem())
+        self.assertEqual(status.OK, graphics.setScenecoordinatesystem(SCENECOORDINATESYSTEM_WORLD))
+        self.assertEqual(SCENECOORDINATESYSTEM_WORLD, graphics.getScenecoordinatesystem())
+
+    def testGraphicsSurfacesBoundaryMode(self):
+        self.assertEqual("BOUNDARY", Graphics.BoundaryModeEnumToString(Graphics.BOUNDARY_MODE_BOUNDARY))
+        self.assertEqual(Graphics.BOUNDARY_MODE_BOUNDARY, Graphics.BoundaryModeEnumFromString("BOUNDARY"))
+        graphics = self.scene.createGraphicsSurfaces()
+        self.assertTrue(graphics.isValid())
+        self.assertFalse(graphics.isExterior())
+        self.assertEqual(Graphics.BOUNDARY_MODE_ALL, graphics.getBoundaryMode())
+        self.assertEqual(status.OK, graphics.setBoundaryMode(Graphics.BOUNDARY_MODE_BOUNDARY))
+        self.assertEqual(Graphics.BOUNDARY_MODE_BOUNDARY, graphics.getBoundaryMode())
+        self.assertTrue(graphics.isExterior())
+
 def suite():
     #import ImportTestCase
     tests = unittest.TestSuite()
