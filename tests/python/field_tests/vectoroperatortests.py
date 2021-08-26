@@ -28,24 +28,43 @@ class VectorOperatorTestCase(unittest.TestCase):
         del self.context
 
     def testCrossProductCreate(self):
-        self.assertRaises(NotImplementedError, self.field_module.createFieldCrossProduct)
+        self.assertRaises(TypeError, self.field_module.createFieldCrossProduct)
         self.assertRaises(TypeError, self.field_module.createFieldCrossProduct, [0])
         f = self.field_module.createFieldConstant([1, 2])
         cp = self.field_module.createFieldCrossProduct([f])
         self.assertTrue(cp.isValid())
 
-    def testCrossProductOverload1(self):
+    def testCrossProductOverload1Valid(self):
         f1 = self.field_module.createFieldConstant([1, 2, 3])
         f2 = self.field_module.createFieldConstant([4, 5, 6])
         cp = self.field_module.createFieldCrossProduct(f1, f2)
         self.assertTrue(cp.isValid())
-        
-    def testCrossProductOverload2(self):
+
+    def testCrossProductOverload1Invalid(self):
         f1 = self.field_module.createFieldConstant([1, 2])
         f2 = self.field_module.createFieldConstant([4, 5])
         cp = self.field_module.createFieldCrossProduct(f1, f2)
         self.assertFalse(cp.isValid())
-        
+
+    def testCrossProductOverload2Valid(self):
+        f1 = self.field_module.createFieldConstant([1, 2, 3])
+        f2 = self.field_module.createFieldConstant([4, 5, 6])
+        cp = self.field_module.createFieldCrossProduct([f1, f2])
+        self.assertTrue(cp.isValid())
+
+    def testCrossProductOverload2Invalid(self):
+        f1 = self.field_module.createFieldConstant([1, 2])
+        f2 = self.field_module.createFieldConstant([4, 5])
+        cp = self.field_module.createFieldCrossProduct([f1, f2])
+        self.assertFalse(cp.isValid())
+
+    def testDotProductCreate(self):
+        self.assertRaises(TypeError, self.field_module.createFieldDotProduct)
+        self.assertRaises(TypeError, self.field_module.createFieldDotProduct, [0])
+        f = self.field_module.createFieldConstant([1, 2])
+        dp = self.field_module.createFieldDotProduct(f, f)
+        self.assertTrue(dp.isValid())
+
 def suite():
     #import ImportTestCase
     tests = unittest.TestSuite()

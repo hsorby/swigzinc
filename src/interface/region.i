@@ -17,6 +17,7 @@
 %typemap(in) (const char *path) = (const char *name);
 %typemap(in) (const char *fileName) = (const char *name);
 
+%import "context.i"
 %import "fieldmodule.i"
 %import "scene.i"
 %import "streamregion.i"
