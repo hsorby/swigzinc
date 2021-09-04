@@ -17,6 +17,10 @@ if(POLICY CMP0086)
     cmake_policy(SET CMP0086 NEW)
 endif()
 
+if(POLICY CMP0094)
+    cmake_policy(SET CMP0094 NEW)
+endif()
+
 # This is the project name and shows up in IDEs
 project(SWIGZinc VERSION 3.2.0 LANGUAGES C CXX)
 
