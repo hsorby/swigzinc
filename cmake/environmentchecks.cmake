@@ -2,6 +2,8 @@
 find_package(Python COMPONENTS Interpreter Development)
 find_package(SWIG)
 
+get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+
 if (Python_VERSION VERSION_GREATER 3.6)
   set(HAVE_SUITABLE_PYTHON TRUE)
 endif()
