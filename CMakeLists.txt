@@ -51,6 +51,9 @@ elseif(CLANG_TIDY)
 endif()
 unset(PYTHON_BINDINGS CACHE)
 
+if(IS_MULTI_CONFIG)
+    set(CFG_DIR /$<CONFIG>)
+endif()
 
 add_subdirectory(src)
 
