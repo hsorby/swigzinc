@@ -23,19 +23,17 @@ from opencmiss.zinc.sceneviewer import Sceneviewer
 from opencmiss.zinc.streamscene import StreaminformationScene
 from opencmiss.zinc import status
 
-class GraphicsTestCase(unittest.TestCase):
 
+class GraphicsTestCase(unittest.TestCase):
 
     def setUp(self):
         self.context = Context('graphicstest')
         self.root_region = self.context.getDefaultRegion()
         self.scene = self.root_region.getScene()
 
-
     def tearDown(self):
         del self.scene
         del self.context
-
 
     def testGraphicsCreation(self):
         graphics = self.scene.createGraphicsPoints()
@@ -76,25 +74,22 @@ class GraphicsTestCase(unittest.TestCase):
         attributes.setBaseSize([4.8, 2.1, 7])
         base_size = attributes.getBaseSize(3)
         self.assertEqual([4.8, 2.1, 7], base_size[1])
-        
+
     def testSceneviewerBackgroundColour(self):
         svm = self.context.getSceneviewermodule()
         sv = svm.createSceneviewer(Sceneviewer.BUFFERING_MODE_DOUBLE, Sceneviewer.STEREO_MODE_MONO)
-        
         result = sv.setBackgroundColourComponentRGB(0.3, 0.8, 0.65)
         self.assertEqual(status.OK, result)
         (result, rgb) = sv.getBackgroundColourRGB()
         self.assertEqual(status.OK, result)
         self.assertEqual([0.3, 0.8, 0.65], rgb)
-        
         result = sv.setBackgroundColourRGB([0.1, 0.9, 0.4])
         self.assertEqual(status.OK, result)
         (result, rgb) = sv.getBackgroundColourRGB()
         self.assertEqual(status.OK, result)
         self.assertEqual([0.1, 0.9, 0.4], rgb)
-        
         self.assertRaises(TypeError, sv.setBackgroundColourRGB, [3.0, 2.0])
-        
+
     def testSceneExport(self):
         path = os.path.dirname(os.path.realpath(__file__))
         result = self.root_region.readFile(path + '/../resource/cube.exformat')
@@ -122,7 +117,7 @@ class GraphicsTestCase(unittest.TestCase):
         self.assertEqual(status.OK, result)
         self.assertIsNotNone(outputBytes2)
         self.assertTrue(b'vertices' in outputBytes2, 'keyword \'vertices\' not found')
-        
+
     def testGraphicsToGlyph(self):
         path = os.path.dirname(os.path.realpath(__file__))
         print(path + '/../resource/cube.exformat')
@@ -159,11 +154,13 @@ class GraphicsTestCase(unittest.TestCase):
         self.assertEqual(Graphics.BOUNDARY_MODE_BOUNDARY, graphics.getBoundaryMode())
         self.assertTrue(graphics.isExterior())
 
+
 def suite():
     #import ImportTestCase
     tests = unittest.TestSuite()
     tests.addTests(unittest.TestLoader().loadTestsFromTestCase(GraphicsTestCase))
     return tests
+
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(suite())
