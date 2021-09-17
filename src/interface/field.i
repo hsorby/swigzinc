@@ -34,6 +34,7 @@
 
 %{
 #include "opencmiss/zinc/fieldalias.hpp"
+#include "opencmiss/zinc/fieldapply.hpp"
 #include "opencmiss/zinc/fieldarithmeticoperators.hpp"
 #include "opencmiss/zinc/fieldcomposite.hpp"
 #include "opencmiss/zinc/fieldconditional.hpp"
@@ -63,6 +64,7 @@
 %}
 
 %include "opencmiss/zinc/field.hpp"
+%include "opencmiss/zinc/fieldapply.hpp"
 %include "opencmiss/zinc/fieldcomposite.hpp"
 %include "opencmiss/zinc/fieldconditional.hpp"
 %include "opencmiss/zinc/fieldconstant.hpp"
