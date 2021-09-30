@@ -163,7 +163,7 @@ message(STATUS "ZINC_PYTHON_DEVELOPER_VERSION: ${ZINC_PYTHON_DEVELOPER_VERSION}"
 # Get a pretty system name.
 #GET_SYSTEM_NAME(SYSTEM_NAME)
 set(PYPI_PACKAGE_NAME opencmiss.zinc)
-set(PYPI_SOURCE_TARGZ_VERSION "${SWIGZinc_VERSION}${ZINC_PYTHON_DEVELOPER_VERSION}-${PYZINC_ARCHITECTURE}-${CMAKE_SYSTEM_NAME}-Python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
+set(PYPI_SOURCE_TARGZ_VERSION "${Zinc_VERSION}-${PYZINC_ARCHITECTURE}-${CMAKE_SYSTEM_NAME}-Python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
 
 ################################################################
 # Generate the required package files
