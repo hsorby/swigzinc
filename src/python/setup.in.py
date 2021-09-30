@@ -37,7 +37,7 @@ class BinaryDistribution(Distribution):
 
 setup(
     name='@PYPI_PACKAGE_NAME@',
-    version='@Zinc_VERSION@@ZINC_PYTHON_DEVELOPER_VERSION@',
+    version='@Zinc_VERSION@',
     author='H. Sorby',
     author_email='h.sorby@auckland.ac.nz',
     packages=['opencmiss', 'opencmiss.zinc'],
@@ -45,8 +45,9 @@ setup(
     url='http://opencmiss.org',
     license='Mozilla Public License 2.0 (MPL 2.0)',
     description=doclines[0],
-    classifiers = filter(None, classifiers.split("\n")),
+    classifiers=classifiers.split("\n"),
     long_description=open('README.txt').read(),
+    long_description_content_type='text/x-rst',
     distclass=BinaryDistribution,
     include_package_data=True,
     zip_safe=False,
