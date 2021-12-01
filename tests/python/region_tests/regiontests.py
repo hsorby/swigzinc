@@ -5,18 +5,17 @@ This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 """
-
 '''
 Created on May 22, 2013
 
 @author: hsorby, rchristie
 '''
 import unittest
-
 from opencmiss.zinc.context import Context
 from opencmiss.zinc.field import Field
-#from opencmiss.zinc.region import Region
-from opencmiss.zinc.result import RESULT_OK
+# from opencmiss.zinc.region import Region
+from opencmiss.zinc.result import RESULT_OK, RESULT_ERROR_NOT_FOUND
+
 
 class RegionTestCase(unittest.TestCase):
 
@@ -94,11 +93,62 @@ class RegionTestCase(unittest.TestCase):
         self.assertFalse(b"fred" in output)
         self.assertTrue(b"joe" in output)
 
+    def testTimeRange(self):
+        """
+        This also tests SWIG typemaps for passing strings and lists of string
+        """
+        rr = self.c.getDefaultRegion()
+        cr = rr.createChild("child")
+        self.assertTrue(cr.isValid())
+        result, _, _ = rr.getTimeRange()
+        self.assertEqual(RESULT_ERROR_NOT_FOUND, result)
+        result, _, _ = cr.getTimeRange()
+        self.assertEqual(RESULT_ERROR_NOT_FOUND, result)
+        result, _, _ = rr.getHierarchicalTimeRange()
+        self.assertEqual(RESULT_ERROR_NOT_FOUND, result)
+
+        TOL = 1.0E-10
+        times = [1.5, 3.1]
+        fm = rr.getFieldmodule()
+        timesequence = fm.getMatchingTimesequence(times)
+        self.assertTrue(timesequence.isValid())
+
+        result, minimumTime, maximumTime = rr.getTimeRange()
+        self.assertEqual(RESULT_OK, result)
+        self.assertAlmostEqual(times[0], minimumTime, delta=TOL)
+        self.assertAlmostEqual(times[1], maximumTime, delta=TOL)
+        result, _, _ = cr.getTimeRange()
+        self.assertEqual(RESULT_ERROR_NOT_FOUND, result)
+        result, minimumTime, maximumTime = rr.getHierarchicalTimeRange()
+        self.assertEqual(RESULT_OK, result)
+        self.assertAlmostEqual(times[0], minimumTime, delta=TOL)
+        self.assertAlmostEqual(times[1], maximumTime, delta=TOL)
+
+        cfm = cr.getFieldmodule()
+        ctimes = [1.1, 2.2, 3.3]
+        ctimesequence = cfm.getMatchingTimesequence(ctimes)
+        self.assertTrue(ctimesequence.isValid())
+
+        result, minimumTime, maximumTime = rr.getTimeRange()
+        self.assertEqual(RESULT_OK, result)
+        self.assertAlmostEqual(times[0], minimumTime, delta=TOL)
+        self.assertAlmostEqual(times[1], maximumTime, delta=TOL)
+        result, minimumTime, maximumTime = cr.getTimeRange()
+        self.assertEqual(RESULT_OK, result)
+        self.assertAlmostEqual(ctimes[0], minimumTime, delta=TOL)
+        self.assertAlmostEqual(ctimes[2], maximumTime, delta=TOL)
+        result, minimumTime, maximumTime = rr.getHierarchicalTimeRange()
+        self.assertEqual(RESULT_OK, result)
+        self.assertAlmostEqual(ctimes[0], minimumTime, delta=TOL)
+        self.assertAlmostEqual(ctimes[2], maximumTime, delta=TOL)
+
+
 def suite():
-    #import ImportTestCase
+    # import ImportTestCase
     tests = unittest.TestSuite()
     tests.addTests(unittest.TestLoader().loadTestsFromTestCase(RegionTestCase))
     return tests
+
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(suite())
