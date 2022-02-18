@@ -14,25 +14,28 @@ def suite():
 
     from import_tests import importtests
     tests.addTests(importtests.suite())
-    
+
     from region_tests import regiontests
     tests.addTests(regiontests.suite())
 
     from graphics_tests import graphicstests
     tests.addTests(graphicstests.suite())
-    
+
     from field_tests import fieldtests
     tests.addTests(fieldtests.suite())
-    
+
     from logger_tests import loggertests
     tests.addTests(loggertests.suite())
-    
+
     from sceneviewer_tests import sceneviewertests
     tests.addTests(sceneviewertests.suite())
-    
+
     from imageprocessing_tests import imageprocessingtests
     tests.addTests(imageprocessingtests.suite())
-    
+
+    from material_tests import materialtests
+    tests.addTests(materialtests.suite())
+
     return tests
 
 if __name__ == '__main__':

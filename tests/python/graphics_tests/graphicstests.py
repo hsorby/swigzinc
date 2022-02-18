@@ -18,9 +18,9 @@ from opencmiss.zinc.context import Context
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.glyph import Glyph
 from opencmiss.zinc.graphics import Graphics
-from opencmiss.zinc.scenecoordinatesystem import SCENECOORDINATESYSTEM_LOCAL, SCENECOORDINATESYSTEM_WORLD, ScenecoordinatesystemEnumFromString, ScenecoordinatesystemEnumToString
+from opencmiss.zinc.scenecoordinatesystem import SCENECOORDINATESYSTEM_LOCAL, SCENECOORDINATESYSTEM_WORLD, \
+    ScenecoordinatesystemEnumFromString, ScenecoordinatesystemEnumToString
 from opencmiss.zinc.sceneviewer import Sceneviewer
-from opencmiss.zinc.streamscene import StreaminformationScene
 from opencmiss.zinc import status
 
 
@@ -120,7 +120,7 @@ class GraphicsTestCase(unittest.TestCase):
 
     def testGraphicsToGlyph(self):
         path = os.path.dirname(os.path.realpath(__file__))
-        print(path + '/../resource/cube.exformat')
+        # print(path + '/../resource/cube.exformat')
         result = self.root_region.readFile(path + '/../resource/cube.exformat')
         self.assertEqual(status.OK, result)
         surfaces = self.scene.createGraphicsSurfaces()
@@ -156,7 +156,6 @@ class GraphicsTestCase(unittest.TestCase):
 
 
 def suite():
-    #import ImportTestCase
     tests = unittest.TestSuite()
     tests.addTests(unittest.TestLoader().loadTestsFromTestCase(GraphicsTestCase))
     return tests
