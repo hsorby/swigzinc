@@ -13,7 +13,6 @@ Created on May 22, 2013
 import unittest
 from opencmiss.zinc.context import Context
 from opencmiss.zinc.field import Field
-# from opencmiss.zinc.region import Region
 from opencmiss.zinc.result import RESULT_OK, RESULT_ERROR_NOT_FOUND
 
 
@@ -144,7 +143,6 @@ class RegionTestCase(unittest.TestCase):
 
 
 def suite():
-    # import ImportTestCase
     tests = unittest.TestSuite()
     tests.addTests(unittest.TestLoader().loadTestsFromTestCase(RegionTestCase))
     return tests
