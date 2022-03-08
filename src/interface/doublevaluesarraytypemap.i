@@ -505,3 +505,5 @@
 {
 	$1 = &temp;
 }
+
+%apply (double *valueOut) { (double *minimumValueOut), (double *maximumValueOut) };
