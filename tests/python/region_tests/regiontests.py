@@ -16,18 +16,30 @@ from opencmiss.zinc.field import Field
 from opencmiss.zinc.result import RESULT_OK, RESULT_ERROR_NOT_FOUND
 
 
+class RegionRecordChange:
+
+    def __init__(self):
+        self._changeCount = 0
+
+    def callback(self, regionevent):
+        self._changeCount += 1
+
+    def getChangeCount(self):
+        return self._changeCount
+
+
 class RegionTestCase(unittest.TestCase):
 
     def setUp(self):
         self.c = Context("region")
-        
+
     def tearDown(self):
         del self.c
-        
+
     def findRegion(self, r, path):
         r.findSubregionAtPath(path)
         self.assertTrue(r.isValid())
-        
+
     def testRegion(self):
         rr = self.c.getDefaultRegion()
         self.assertTrue(rr.isValid())
@@ -36,6 +48,54 @@ class RegionTestCase(unittest.TestCase):
         tr = rr.findSubregionAtPath("/bob/rick/mark")
         self.assertTrue(tr.isValid())
         self.findRegion(rr, '/bob/rick/mark')
+
+    def testBuildRegionTreeNotifier(self):
+        rr = self.c.getDefaultRegion()
+        self.assertTrue(rr.isValid())
+
+        rrNotifier = rr.createRegionnotifier()
+        self.assertTrue(rrNotifier.isValid())
+        rrChange = RegionRecordChange()
+        self.assertEqual(RESULT_OK, rrNotifier.setCallback(rrChange.callback))
+        self.assertEqual(0, rrChange.getChangeCount())
+
+        mark = rr.createSubregion("bob/rick/mark")
+        self.assertEqual(1, rrChange.getChangeCount())
+
+        rick = mark.getParent()
+        rickNotifier = rick.createRegionnotifier()
+        self.assertTrue(rickNotifier.isValid())
+        rickChange = RegionRecordChange()
+        self.assertEqual(RESULT_OK, rickNotifier.setCallback(rickChange.callback))
+        self.assertEqual(0, rickChange.getChangeCount())
+
+        rr.beginChange()
+        joe = rick.createChild("joeX")
+        self.assertEqual(1, rickChange.getChangeCount())
+        self.assertTrue(joe.isValid())
+        self.assertEqual(RESULT_OK, joe.setName("joe"))
+        self.assertEqual(2, rickChange.getChangeCount())
+        self.assertEqual(1, rrChange.getChangeCount())  # no notification yet
+        rr.endChange()
+        self.assertEqual(2, rrChange.getChangeCount())
+
+        rick.beginChange()
+        self.assertEqual(RESULT_OK, rick.removeChild(mark))
+        self.assertEqual(2, rickChange.getChangeCount())  # no notification yet
+        self.assertEqual(2, rrChange.getChangeCount())  # no notification yet
+        rick.endChange()
+        self.assertEqual(3, rickChange.getChangeCount())
+        self.assertEqual(3, rrChange.getChangeCount())
+
+        self.assertEqual(RESULT_OK, joe.appendChild(mark))
+        self.assertEqual(4, rickChange.getChangeCount())
+        self.assertEqual(4, rrChange.getChangeCount())
+
+        self.assertEqual(RESULT_OK, rickNotifier.clearCallback())
+        self.assertEqual(RESULT_OK, rickNotifier.clearCallback())  # check can call again
+        alf = rick.createChild("alf")
+        self.assertEqual(4, rickChange.getChangeCount())  # no change as notifications off
+        self.assertEqual(5, rrChange.getChangeCount())
 
     def testGetContext(self):
         rr = self.c.getDefaultRegion()
