@@ -59,6 +59,7 @@
 #include "opencmiss/zinc/fieldassignment.hpp"
 #include "opencmiss/zinc/fieldcache.hpp"
 #include "opencmiss/zinc/fieldparameters.hpp"
+#include "opencmiss/zinc/fieldrange.hpp"
 #include "opencmiss/zinc/fieldsmoothing.hpp"
 #include "opencmiss/zinc/streamimage.hpp"
 %}

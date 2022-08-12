@@ -22,6 +22,7 @@
 
 %{
 #include "opencmiss/zinc/fieldcache.hpp"
+#include "opencmiss/zinc/fieldrange.hpp"
 %}
 
 %include "opencmiss/zinc/fieldcache.hpp"
