@@ -28,6 +28,7 @@
 %import "fieldcache.i"
 %import "fieldmodule.i"
 %import "fieldparameters.i"
+%import "fieldrange.i"
 %import "fieldsmoothing.i"
 %import "region.i"
 %import "streamimage.i"
