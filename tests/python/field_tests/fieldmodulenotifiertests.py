@@ -20,6 +20,7 @@ import opencmiss.zinc.status
 
 lastfieldevent = Field.CHANGE_FLAG_NONE
 
+
 def fieldmoduleCallback(event):
     global lastfieldevent 
     lastfieldevent = event
@@ -27,17 +28,14 @@ def fieldmoduleCallback(event):
 
 class FieldmodulenotifierTestCase(unittest.TestCase):
 
-
     def setUp(self):
         self.context = Context("fieldmodulenotifier")
         root_region = self.context.getDefaultRegion()
         self.field_module = root_region.getFieldmodule()
 
-
     def tearDown(self):
         del self.field_module
         del self.context
-
 
     def testFieldmodulenotifierFieldCreate(self):
         self.assertRaises(TypeError, self.field_module.createFieldmodulenotifier, [1])
@@ -56,9 +54,10 @@ class FieldmodulenotifierTestCase(unittest.TestCase):
         
         cache = self.field_module.createFieldcache()
         self.assertEqual(opencmiss.zinc.status.OK, joe.assignReal(cache, [4.5]))
-        self.assertEqual(Field.CHANGE_FLAG_DEFINITION | Field.CHANGE_FLAG_FULL_RESULT, lastfieldevent.getSummaryFieldChangeFlags())
+        self.assertEqual(Field.CHANGE_FLAG_DEFINITION | Field.CHANGE_FLAG_FULL_RESULT,
+                         lastfieldevent.getSummaryFieldChangeFlags())
         
-        self.assertEqual(opencmiss.zinc.status.OK, joe.setManaged(True));
+        self.assertEqual(opencmiss.zinc.status.OK, joe.setManaged(True))
         self.assertEqual(Field.CHANGE_FLAG_DEFINITION, lastfieldevent.getSummaryFieldChangeFlags())
 
         fred = self.field_module.createFieldMagnitude(joe)
@@ -69,23 +68,25 @@ class FieldmodulenotifierTestCase(unittest.TestCase):
 
         self.assertEqual(opencmiss.zinc.status.OK, joe.assignReal(cache, [4.5]))
         self.assertEqual(Field.CHANGE_FLAG_DEFINITION | Field.CHANGE_FLAG_FULL_RESULT,
-            lastfieldevent.getSummaryFieldChangeFlags())
-        self.assertEqual(Field.CHANGE_FLAG_DEFINITION | Field.CHANGE_FLAG_FULL_RESULT, lastfieldevent.getFieldChangeFlags(joe))
+                         lastfieldevent.getSummaryFieldChangeFlags())
+        self.assertEqual(Field.CHANGE_FLAG_DEFINITION | Field.CHANGE_FLAG_FULL_RESULT,
+                         lastfieldevent.getFieldChangeFlags(joe))
         self.assertEqual(Field.CHANGE_FLAG_FULL_RESULT, lastfieldevent.getFieldChangeFlags(fred))
 
         self.assertEqual(opencmiss.zinc.status.OK, joe.setManaged(False))
-        joe = None
-        fred = None
+        del joe
+        del fred
         self.assertEqual(Field.CHANGE_FLAG_REMOVE, lastfieldevent.getSummaryFieldChangeFlags())
 
         self.assertEqual(opencmiss.zinc.status.OK, notifier.clearCallback())
 
 
 def suite():
-    #import ImportTestCase
+    # import ImportTestCase
     tests = unittest.TestSuite()
     tests.addTests(unittest.TestLoader().loadTestsFromTestCase(FieldmodulenotifierTestCase))
     return tests
+
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(suite())

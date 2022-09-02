@@ -16,12 +16,13 @@
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *stringValue) = (const char *name);
 
-%import "field.i"
 %import "element.i"
+%import "field.i"
 %import "node.i"
 
 %{
 #include "opencmiss/zinc/fieldcache.hpp"
+#include "opencmiss/zinc/fieldrange.hpp"
 %}
 
 %include "opencmiss/zinc/fieldcache.hpp"
