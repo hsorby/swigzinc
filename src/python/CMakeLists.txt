@@ -35,6 +35,7 @@ set(INTERFACE_SRCS
     ../interface/fieldcache.i
     ../interface/fieldassignment.i
     ../interface/fieldparameters.i
+    ../interface/fieldrange.i
     ../interface/fieldsmoothing.i
     ../interface/font.i
     ../interface/glyph.i
