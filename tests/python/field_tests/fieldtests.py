@@ -14,9 +14,11 @@ Created on May 23, 2013
 import unittest
 
 try:
-    from field_tests import applytests, compositetests, fieldmodulenotifiertests, sceneviewerprojectionfieldtests, vectoroperatortests
+    from field_tests import applytests, compositetests, fieldmodulenotifiertests, fieldrangetests, \
+        sceneviewerprojectionfieldtests, vectoroperatortests
 except ImportError:
-    import compositetests, fieldmodulenotifiertests, sceneviewerprojectionfieldtests, vectoroperatortests
+    import applytests, compositetests, fieldrangetests, fieldmodulenotifiertests, sceneviewerprojectionfieldtests, \
+        vectoroperatortests
     
 def suite():
     #import ImportTestCase
@@ -27,6 +29,7 @@ def suite():
     tests.addTests(vectoroperatortests.suite())
     tests.addTests(compositetests.suite())
     tests.addTests(fieldmodulenotifiertests.suite())
+    tests.addTests(fieldrangetests.suite())
     
     return tests
 
