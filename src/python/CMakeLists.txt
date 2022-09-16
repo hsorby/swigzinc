@@ -10,7 +10,7 @@ if (CMAKE_CONFIGURATION_TYPES)
 endif ()
 
 # Create Python bindings for the Zinc library.
-set(ZINC_PYTHON_PREFERRED_VERSION "" CACHE STRING "Identify your preferred version of Python to locate, if not set the first available Python is used. [2.6, 2.7, 3.0, 3.3, ...]")
+set(ZINC_PYTHON_PREFERRED_VERSION "" CACHE STRING "Identify your preferred version of Python to locate, if not set the first available Python is used. [3.7, 3.8, 3.9, ...]")
 
 # SWIG has already been found at this point.
 include(${SWIG_USE_FILE})
@@ -87,17 +87,35 @@ foreach(SWIG_INTERFACE ${INTERFACE_SRCS})
     swig_add_library(${MODULE_NAME}
       LANGUAGE python
       SOURCES ${SWIG_INTERFACE})
-    target_link_libraries(${MODULE_NAME} PUBLIC Python::Python zinc)
+    target_link_libraries(${MODULE_NAME} PUBLIC zinc)
 
-    set(MODULE_TARGET ${SWIG_MODULE_${MODULE_NAME}_REAL_NAME})
+    if(FIND_PYTHON_DEVELOPMENT_MODULE)
+      set(_PYTHON_LINK_TARGET Python::Module)
+    else()
+      set(_PYTHON_LINK_TARGET Python::Python)
+    endif()
+
+    if (APPLE)
+      # Specifically allow dynamic lookup, here we are really targetting Python symbols.
+      set_target_properties(${MODULE_NAME} PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+      # But, we do need to know about the Python include directories.
+      target_include_directories(${MODULE_NAME} PRIVATE ${Python_INCLUDE_DIRS})
+    elseif (UNDEFINED_SYMBOLS_ALLOWED)
+      # Linker allows undefined symbols, so let's not link Python.
+      # But, we do need to know about the Python include directories.
+      target_include_directories(${MODULE_NAME} PRIVATE ${Python_INCLUDE_DIRS})
+    else()
+      target_link_libraries(${MODULE_NAME} PRIVATE ${_PYTHON_LINK_TARGET})
+    endif()
+
     # Disable use of Debug Python libraries when not present on Windows
     # See http://stackoverflow.com/questions/11311877/creating-a-dll-from-a-wrapped-cpp-file-with-swig
     if (WIN32)
-        if(NOT PYTHON_DEBUG_LIBRARY)
-            target_compile_definitions(${MODULE_TARGET} PRIVATE $<$<CONFIG:Debug>:SWIG_PYTHON_INTERPRETER_NO_DEBUG>)
+        if (NOT PYTHON_DEBUG_LIBRARY)
+            target_compile_definitions(${MODULE_NAME} PRIVATE $<$<CONFIG:Debug>:SWIG_PYTHON_INTERPRETER_NO_DEBUG>)
         endif()
     endif()
-    set_target_properties(${MODULE_TARGET} PROPERTIES
+    set_target_properties(${MODULE_NAME} PROPERTIES
         DEBUG_POSTFIX ""
         CXX_VISIBILITY_PRESET hidden
         BUILD_WITH_INSTALL_RPATH TRUE
@@ -105,14 +123,14 @@ foreach(SWIG_INTERFACE ${INTERFACE_SRCS})
         RUNTIME_OUTPUT_DIRECTORY ${ZINC_PYTHON_PACKAGE_DIR}
     )
     if (APPLE)
-        set_target_properties(${MODULE_TARGET} PROPERTIES
+        set_target_properties(${MODULE_NAME} PROPERTIES
             INSTALL_RPATH "@loader_path/")
     elseif (UNIX)
-        set_target_properties(${MODULE_TARGET} PROPERTIES
+        set_target_properties(${MODULE_NAME} PROPERTIES
             INSTALL_RPATH "\$ORIGIN/")
     endif ()
-    list(APPEND SWIG_MODULE_TARGETS ${MODULE_TARGET})
-    list(APPEND SETUP_PY_PACKAGE_FILES "'$<TARGET_FILE_NAME:${MODULE_TARGET}>'")
+    list(APPEND SWIG_MODULE_TARGETS ${MODULE_NAME})
+    list(APPEND SETUP_PY_PACKAGE_FILES "'$<TARGET_FILE_NAME:${MODULE_NAME}>'")
 endforeach()
 
 add_custom_target(collect_python_binding_files ALL
