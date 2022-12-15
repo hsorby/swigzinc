@@ -1,5 +1,15 @@
+include(TestUndefinedSymbolsAllowed)
 
-find_package(Python COMPONENTS Interpreter Development)
+test_undefined_symbols_allowed()
+
+if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.18 AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(_FIND_PYTHON_DEVELOPMENT_TYPE Development.Module)
+  set(FIND_PYTHON_DEVELOPMENT_MODULE TRUE)
+else()
+  set(_FIND_PYTHON_DEVELOPMENT_TYPE Development)
+endif()
+
+find_package(Python COMPONENTS Interpreter ${_FIND_PYTHON_DEVELOPMENT_TYPE})
 find_package(SWIG)
 
 get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
