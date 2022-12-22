@@ -24,6 +24,8 @@ class LoggerTestCase(unittest.TestCase):
         self.logger = self.c.getLogger()
         
     def tearDown(self):
+        del self.root_region
+        del self.logger
         del self.c
                
     def testLogger(self):

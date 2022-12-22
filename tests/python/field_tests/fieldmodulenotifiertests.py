@@ -24,6 +24,7 @@ lastfieldevent = Field.CHANGE_FLAG_NONE
 def fieldmoduleCallback(event):
     global lastfieldevent 
     lastfieldevent = event
+    del event
 
 
 class FieldmodulenotifierTestCase(unittest.TestCase):
@@ -31,6 +32,7 @@ class FieldmodulenotifierTestCase(unittest.TestCase):
     def setUp(self):
         self.context = Context("fieldmodulenotifier")
         root_region = self.context.getDefaultRegion()
+        root_region.setName("root")
         self.field_module = root_region.getFieldmodule()
 
     def tearDown(self):
@@ -74,11 +76,13 @@ class FieldmodulenotifierTestCase(unittest.TestCase):
         self.assertEqual(Field.CHANGE_FLAG_FULL_RESULT, lastfieldevent.getFieldChangeFlags(fred))
 
         self.assertEqual(opencmiss.zinc.status.OK, joe.setManaged(False))
-        del joe
         del fred
         self.assertEqual(Field.CHANGE_FLAG_REMOVE, lastfieldevent.getSummaryFieldChangeFlags())
 
         self.assertEqual(opencmiss.zinc.status.OK, notifier.clearCallback())
+        del cache
+        del notifier
+        del joe
 
 
 def suite():
@@ -90,3 +94,4 @@ def suite():
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(suite())
+

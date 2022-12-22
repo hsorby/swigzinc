@@ -33,6 +33,7 @@ class GraphicsTestCase(unittest.TestCase):
 
     def tearDown(self):
         del self.scene
+        del self.root_region
         del self.context
 
     def testGraphicsCreation(self):

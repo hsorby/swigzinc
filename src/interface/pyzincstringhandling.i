@@ -11,9 +11,12 @@
  */
 
 
+%typemap(newfree) char * "cmzn_deallocate($1);"
+/*
 %typemap(newfree) char * {
 free($1);
 }
+*/
 
 %newobject *::getName(); 
 
@@ -26,6 +29,14 @@ free($1);
 %newobject *::getLabelText(int labelNumber);
 
 %newobject *::getSolutionReport();
+
+%newobject OpenCMISS::Zinc::Logger::getMessageTextAtIndex;
+%newobject OpenCMISS::Zinc::Loggerevent::getMessageText;
+//%typemap(ret) stringheap_t %{
+//  cmzn_deallocate($1);
+//%}
+
+
 
 %typemap(in) (const void *buffer, unsigned int buffer_length)
 {
