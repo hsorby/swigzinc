@@ -24,7 +24,6 @@ lastfieldevent = Field.CHANGE_FLAG_NONE
 def fieldmoduleCallback(event):
     global lastfieldevent 
     lastfieldevent = event
-    del event
 
 
 class FieldmodulenotifierTestCase(unittest.TestCase):
