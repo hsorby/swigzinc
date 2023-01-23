@@ -21,7 +21,7 @@ foreach(TESTDIR ${PYTHON_TESTDIRS})
 endforeach()
 
 # Also add a test to see if simple importing of the libraries works
-add_test(NAME Python_Bindings_Import
+add_test(NAME Python_Bindings_import
     COMMAND ${Python_EXECUTABLE} -c "from opencmiss.zinc.context import Context"
 )
 list(APPEND PYTHONTESTS Python_Bindings_Import)
