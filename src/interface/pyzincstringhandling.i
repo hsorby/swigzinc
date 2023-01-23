@@ -58,11 +58,7 @@ free($1);
     }
     else if (PyUnicode_Check($input))
     {
-%#if PY_VERSION_HEX < 0x03030000
-        PyObject *utf8_obj = PyUnicode_AsUTF8String($input);
-        $1 = PyString_AsString(utf8_obj);
-        $2 = PyString_Size(utf8_obj);
-%#elif PY_VERSION_HEX < 0x03070000
+%#if PY_VERSION_HEX < 0x03070000
         Py_ssize_t len = 0;
         $1 = PyUnicode_AsUTF8AndSize($input, &len);
         $2 = (int)len;
@@ -143,14 +139,8 @@ free($1);
 		$1 = 1;
 		$2 = new char*[1];
 		PyObject *o = $input;
-%#if PY_VERSION_HEX < 0x03030000
-		PyObject *utf8_obj = PyUnicode_AsUTF8String(o);
-		char *temp_string = PyString_AsString(utf8_obj);
-		Py_ssize_t length = PyString_Size(utf8_obj);
-%#else
 		Py_ssize_t length;
 		const char* temp_string = PyUnicode_AsUTF8AndSize(o, &length);
-%#endif
 		if (temp_string != NULL)
 		{
 			$2[0] = new char[length + 1];
@@ -180,14 +170,8 @@ free($1);
 			}
 			else if (PyUnicode_Check(o))
 			{
-%#if PY_VERSION_HEX < 0x03030000
-				PyObject *utf8_obj = PyUnicode_AsUTF8String(o);
-				char *temp_string = PyString_AsString(utf8_obj);
-				Py_ssize_t length = PyString_Size(utf8_obj);
-%#else
 				Py_ssize_t length;
 				const char* temp_string = PyUnicode_AsUTF8AndSize(o, &length);
-%#endif
 				if (temp_string != NULL)
 				{
 					$2[i] = new char[length + 1];
@@ -236,28 +220,14 @@ free($1);
 	{
 		PyObject *o = $input;
 		
-		char *temp_string = PyString_AsString(o);
-		int length = strlen(temp_string);
-		$1 = new char[length + 1];
-		strcpy($1, temp_string);
+        char *$1 = PyString_AsString(o);
 	}
 	else if (PyUnicode_Check($input))
 	{
 		PyObject *o = $input;
-%#if PY_VERSION_HEX < 0x03030000
-		PyObject *utf8_obj = PyUnicode_AsUTF8String(o);
-		char *temp_string = PyString_AsString(utf8_obj);
-		Py_ssize_t length = PyString_Size(utf8_obj);
-%#else
 		Py_ssize_t length;
-		const char* temp_string = PyUnicode_AsUTF8AndSize(o, &length);
-%#endif
-		if (temp_string != NULL)
-		{
-			$1 = new char[length + 1];
-			strcpy($1, temp_string);
-		}
-		else
+        const char* $1 = PyUnicode_AsUTF8AndSize(o, &length);
+        if (!$1)
 		{
 			PyErr_SetString(PyExc_ValueError,"Not a UTF8 compatible string");
 			$1 = 0;
@@ -269,14 +239,6 @@ free($1);
 		PyErr_SetString(PyExc_TypeError,"Not a single string value");
 		$1 = 0;
 		return NULL;
-	}
-};
-
-%typemap(freearg) (const char *name)
-{
-	if ($1)
-	{
-		delete[] $1;
 	}
 };
 
