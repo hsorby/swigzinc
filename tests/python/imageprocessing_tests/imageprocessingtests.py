@@ -11,6 +11,7 @@ Created on October 11, 2013
 
 @author: Alan Wu
 '''
+import sys
 import unittest
 
 try:
@@ -31,5 +32,6 @@ def suite():
     return tests
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(suite())
+    res = unittest.TextTestRunner().run(suite())
+    sys.exit(len(res.failures))
 

@@ -1,9 +1,15 @@
 set(PYTHONTESTS )
 
 # Add python interface tests
-set(PYTHON_TESTDIRS import_tests region_tests
-    graphics_tests field_tests logger_tests 
-    sceneviewer_tests imageprocessing_tests
+set(PYTHON_TESTDIRS
+    field_tests
+    graphics_tests
+    imageprocessing_tests
+    import_tests
+    logger_tests
+    material_tests
+    region_tests
+    sceneviewer_tests
 )
 
 foreach(TESTDIR ${PYTHON_TESTDIRS})

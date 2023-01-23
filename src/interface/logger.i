@@ -48,6 +48,7 @@
 }
 
 %{
+#include "opencmiss/zinc/core.h"
 #include "opencmiss/zinc/logger.hpp"
 
 static void loggerCallbackToPython(cmzn_loggerevent_id loggerevent, 
