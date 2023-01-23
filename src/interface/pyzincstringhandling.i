@@ -216,28 +216,24 @@ free($1);
 
 %typemap(in) (const char *name)
 {
+    PyObject *o = $input;
 	if (PyString_Check($input))
 	{
-		PyObject *o = $input;
-		
-        char *$1 = PyString_AsString(o);
+        $1 = PyString_AsString(o);
 	}
 	else if (PyUnicode_Check($input))
 	{
-		PyObject *o = $input;
 		Py_ssize_t length;
-        const char* $1 = PyUnicode_AsUTF8AndSize(o, &length);
+        $1 = const_cast<char *>(PyUnicode_AsUTF8AndSize(o, &length));
         if (!$1)
 		{
 			PyErr_SetString(PyExc_ValueError,"Not a UTF8 compatible string");
-			$1 = 0;
 			return NULL;
 		}
 	}
 	else
 	{
 		PyErr_SetString(PyExc_TypeError,"Not a single string value");
-		$1 = 0;
 		return NULL;
 	}
 };
