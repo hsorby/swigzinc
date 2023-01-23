@@ -19,16 +19,22 @@ free($1);
 */
 
 %newobject *::getName(); 
-
 %newobject *::getComponentName(int componentNumber);
-
 %newobject *::evaluateString;
-
 %newobject *::getProperty(const char* property);
-
 %newobject *::getLabelText(int labelNumber);
-
 %newobject *::getSolutionReport();
+
+%newobject OpenCMISS::Zinc::Graphics::RenderPolygonModeEnumToString;
+%newobject OpenCMISS::Zinc::Graphics::SelectModeEnumToString;
+%newobject OpenCMISS::Zinc::Graphics::TypeEnumToString;
+%newobject OpenCMISS::Zinc::Graphics::BoundaryModeEnumToString;
+%newobject OpenCMISS::Zinc::GraphicsStreamlines::ColourDataTypeEnumToString;
+%newobject OpenCMISS::Zinc::GraphicsStreamlines::TrackDirectionEnumToString;
+%newobject OpenCMISS::Zinc::Graphicslineattributes::ShapeTypeEnumToString;
+%newobject OpenCMISS::Zinc::Graphicspointattributes::getLabelText;
+
+%newobject OpenCMISS::Zinc::ScenecoordinatesystemEnumToString;
 
 %newobject OpenCMISS::Zinc::Logger::getMessageTextAtIndex;
 %newobject OpenCMISS::Zinc::Loggerevent::getMessageText;
