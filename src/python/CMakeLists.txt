@@ -15,10 +15,6 @@ set(ZINC_PYTHON_PREFERRED_VERSION "" CACHE STRING "Identify your preferred versi
 # SWIG has already been found at this point.
 include(${SWIG_USE_FILE})
 
-if("${Python_VERSION_MAJOR}" STREQUAL "3")
-    set(PYTHONLIBS_SWIG_FLAGS -py3)
-endif()
-
 # We have to set the include directories onto the directory because the swig
 # wrapping process requires the include directories.
 #include_directories(${ZINC_API_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS})
