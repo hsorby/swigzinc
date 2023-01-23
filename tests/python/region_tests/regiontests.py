@@ -10,7 +10,9 @@ Created on May 22, 2013
 
 @author: hsorby, rchristie
 '''
+import sys
 import unittest
+
 from opencmiss.zinc.context import Context
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.result import RESULT_OK, RESULT_ERROR_NOT_FOUND
@@ -209,4 +211,5 @@ def suite():
 
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(suite())
+    res = unittest.TextTestRunner().run(suite())
+    sys.exit(len(res.failures))

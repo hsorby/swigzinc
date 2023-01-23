@@ -10,6 +10,7 @@ Created on Nov 2, 2021
 
 @author: rchristie
 '''
+import sys
 import unittest
 
 from opencmiss.zinc.context import Context
@@ -121,4 +122,5 @@ def suite():
 
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(suite())
+    res = unittest.TextTestRunner().run(suite())
+    sys.exit(len(res.failures))
