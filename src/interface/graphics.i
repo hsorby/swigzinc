@@ -32,6 +32,7 @@
 }
 
 %{
+#include "opencmiss/zinc/core.h"
 #include "opencmiss/zinc/fieldmodule.hpp"
 #include "opencmiss/zinc/graphics.hpp"
 #include "opencmiss/zinc/scene.hpp"
