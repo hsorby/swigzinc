@@ -34,6 +34,7 @@
 %import "streamimage.i"
 
 %{
+#include "opencmiss/zinc/core.h"
 #include "opencmiss/zinc/fieldalias.hpp"
 #include "opencmiss/zinc/fieldapply.hpp"
 #include "opencmiss/zinc/fieldarithmeticoperators.hpp"

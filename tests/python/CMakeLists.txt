@@ -1,9 +1,15 @@
 set(PYTHONTESTS )
 
 # Add python interface tests
-set(PYTHON_TESTDIRS import_tests region_tests
-    graphics_tests field_tests logger_tests 
-    sceneviewer_tests imageprocessing_tests
+set(PYTHON_TESTDIRS
+    field_tests
+    graphics_tests
+    imageprocessing_tests
+    import_tests
+    logger_tests
+    material_tests
+    region_tests
+    sceneviewer_tests
 )
 
 foreach(TESTDIR ${PYTHON_TESTDIRS})
@@ -15,10 +21,11 @@ foreach(TESTDIR ${PYTHON_TESTDIRS})
 endforeach()
 
 # Also add a test to see if simple importing of the libraries works
-add_test(NAME Python_Bindings_Import
+set(TESTNAME import)
+add_test(NAME Python_Bindings_${TESTNAME}
     COMMAND ${Python_EXECUTABLE} -c "from opencmiss.zinc.context import Context"
 )
-list(APPEND PYTHONTESTS Python_Bindings_Import)
+list(APPEND PYTHONTESTS Python_Bindings_${TESTNAME})
 
 # Common test settings
 if (WIN32)

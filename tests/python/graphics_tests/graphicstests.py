@@ -12,6 +12,7 @@ Created on May 22, 2013
 @author: hsorby
 '''
 import os
+import sys
 import unittest
 
 from opencmiss.zinc.context import Context
@@ -33,6 +34,7 @@ class GraphicsTestCase(unittest.TestCase):
 
     def tearDown(self):
         del self.scene
+        del self.root_region
         del self.context
 
     def testGraphicsCreation(self):
@@ -162,4 +164,5 @@ def suite():
 
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(suite())
+    res = unittest.TextTestRunner().run(suite())
+    sys.exit(len(res.failures))
