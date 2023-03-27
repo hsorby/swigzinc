@@ -3,7 +3,7 @@ Zinc Python bindings
 ====================
 
 Zinc provides Python bindings to the visualisation library.
-There are some examples available at http://opencmiss.org/documentation/tutorials/index.html.
+There are some examples available at https://cmlibs.org/documentation/tutorials/index.html.
 A typical usage often starts with creating a Context like this::
 
  from cmlibs.zinc import context
@@ -19,7 +19,7 @@ The examples are the best place for getting started with Zinc Python bindings.
 Contributors
 ============
 
-Alan Wu
-Hugh Sorby
-Richard Christie
+* Alan Wu
+* Hugh Sorby
+* Richard Christie
 

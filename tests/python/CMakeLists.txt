@@ -34,7 +34,7 @@ else()
     set(PYTHONPATH_SEP ":")
 endif()
 
-# Set the correct python path to have it find the opencmiss package
+# Set the correct python path to have it find the cmlibs package
 file(TO_NATIVE_PATH "${PROJECT_BINARY_DIR}/src/python${CFG_DIR}" NATIVE_PYTHON_BINDINGS_DIR)
 # This is just needed by imageprocessing_tests and field_tests (they need a pythonpath at the python/tests dir)
 file(TO_NATIVE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" NATIVE_TEST_BASE_DIR)
