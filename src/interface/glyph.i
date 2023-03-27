@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") glyph
+%module(package="cmlibs.zinc") glyph
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *label) = (const char *name);
 %typemap(in) (const char *numberFormat) = (const char *name);

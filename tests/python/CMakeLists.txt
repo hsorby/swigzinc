@@ -23,7 +23,7 @@ endforeach()
 # Also add a test to see if simple importing of the libraries works
 set(TESTNAME import)
 add_test(NAME Python_Bindings_${TESTNAME}
-    COMMAND ${Python_EXECUTABLE} -c "from opencmiss.zinc.context import Context"
+    COMMAND ${Python_EXECUTABLE} -c "from cmlibs.zinc.context import Context"
 )
 list(APPEND PYTHONTESTS Python_Bindings_${TESTNAME})
 

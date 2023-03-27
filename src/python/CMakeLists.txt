@@ -151,7 +151,7 @@ endif()
 
 # Get a pretty system name.
 #GET_SYSTEM_NAME(SYSTEM_NAME)
-set(PYPI_PACKAGE_NAME opencmiss.zinc)
+set(PYPI_PACKAGE_NAME cmlibs.zinc)
 set(PYPI_SOURCE_TARGZ_VERSION "${Zinc_VERSION}-${PYZINC_ARCHITECTURE}-${CMAKE_SYSTEM_NAME}-Python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
 
 ################################################################

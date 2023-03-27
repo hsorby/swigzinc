@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") scenepicker
+%module(package="cmlibs.zinc") scenepicker
 
 %include "doublevaluesarraytypemap.i"
 

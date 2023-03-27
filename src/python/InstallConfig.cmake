@@ -1,5 +1,5 @@
 # Set installation destination paths.
-set(PYTHON_DESTINATION_PREFIX lib/python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}${CFG_DIR}/opencmiss.zinc)
+set(PYTHON_DESTINATION_PREFIX lib/python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}${CFG_DIR}/cmlibs.zinc)
 set(PYTHON_MODULE_TARGETS_DESTINATION_PREFIX "${PYTHON_DESTINATION_PREFIX}/opencmiss/zinc")
 
 install(TARGETS ${SWIG_MODULE_TARGETS} ${ZINC_SHARED_TARGET}

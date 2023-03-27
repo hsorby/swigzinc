@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") streamimage
+%module(package="cmlibs.zinc") streamimage
 
 %include "pyzincstringhandling.i"
 

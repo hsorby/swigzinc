@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") streamregion
+%module(package="cmlibs.zinc") streamregion
 
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *groupName) = (const char *name);

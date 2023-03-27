@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") scene
+%module(package="cmlibs.zinc") scene
 %include "pyzincstringhandling.i"
 
 %import "graphics.i"

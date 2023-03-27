@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") sceneviewerinput
+%module(package="cmlibs.zinc") sceneviewerinput
 
 %import "sceneviewer.i"
 

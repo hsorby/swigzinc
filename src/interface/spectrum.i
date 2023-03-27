@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") spectrum
+%module(package="cmlibs.zinc") spectrum
 
 %extend OpenCMISS::Zinc::Spectrummodulenotifier {
 

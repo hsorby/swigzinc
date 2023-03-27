@@ -15,14 +15,14 @@ import os
 import sys
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.field import Field
-from opencmiss.zinc.glyph import Glyph
-from opencmiss.zinc.graphics import Graphics
-from opencmiss.zinc.scenecoordinatesystem import SCENECOORDINATESYSTEM_LOCAL, SCENECOORDINATESYSTEM_WORLD, \
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.field import Field
+from cmlibs.zinc.glyph import Glyph
+from cmlibs.zinc.graphics import Graphics
+from cmlibs.zinc.scenecoordinatesystem import SCENECOORDINATESYSTEM_LOCAL, SCENECOORDINATESYSTEM_WORLD, \
     ScenecoordinatesystemEnumFromString, ScenecoordinatesystemEnumToString
-from opencmiss.zinc.sceneviewer import Sceneviewer
-from opencmiss.zinc import status
+from cmlibs.zinc.sceneviewer import Sceneviewer
+from cmlibs.zinc import status
 
 
 class GraphicsTestCase(unittest.TestCase):

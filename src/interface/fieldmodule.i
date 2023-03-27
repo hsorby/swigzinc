@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") fieldmodule
+%module(package="cmlibs.zinc") fieldmodule
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *fieldName) = (const char *name);
 %typemap(in) (const char *nodeset_name) = (const char *name);

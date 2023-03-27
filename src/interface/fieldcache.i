@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") fieldcache
+%module(package="cmlibs.zinc") fieldcache
 %include "doublevaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *stringValue) = (const char *name);

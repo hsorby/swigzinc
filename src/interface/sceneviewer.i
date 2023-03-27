@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") sceneviewer
+%module(package="cmlibs.zinc") sceneviewer
 %include "typemaps.i"
 %apply double *OUTPUT { double *eyex, double *eyey, double *eyez, double *lookatx, double *lookaty, double *lookatz, double *upx, double *upy, double *upz};
 %apply double *OUTPUT { double *left, double *right, double *bottom, double *top, double *near_plane, double *far_plane};

@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") scenefilter
+%module(package="cmlibs.zinc") scenefilter
 
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *matchName) = (const char *name);

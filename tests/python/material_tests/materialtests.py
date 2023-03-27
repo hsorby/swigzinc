@@ -13,9 +13,9 @@ Created on Nov 2, 2021
 import sys
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.material import Material
-from opencmiss.zinc import status
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.material import Material
+from cmlibs.zinc import status
 
 
 class MaterialmoduleRecordChange:

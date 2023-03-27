@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") scenecoordinatesystem
+%module(package="cmlibs.zinc") scenecoordinatesystem
 
 %{
 #include "opencmiss/zinc/types/scenecoordinatesystem.hpp"

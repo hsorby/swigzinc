@@ -13,7 +13,7 @@ Created on October 11, 2013
 '''
 import unittest
 
-from opencmiss.zinc.context import Context
+from cmlibs.zinc.context import Context
 
 class ImagefilterConnectedThresholdTestsCase(unittest.TestCase):
 

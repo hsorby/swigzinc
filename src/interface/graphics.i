@@ -10,7 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") graphics
+%module(package="cmlibs.zinc") graphics
 %include "doublevaluesarraytypemap.i"
 %include "integervaluesarraytypemap.i"
 %include "pyzincstringhandling.i"

@@ -14,8 +14,8 @@ Created on May 23, 2013
 import os
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.result import RESULT_OK
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.result import RESULT_OK
 
 
 class FieldrangeTestCase(unittest.TestCase):

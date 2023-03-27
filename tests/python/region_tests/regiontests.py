@@ -13,9 +13,9 @@ Created on May 22, 2013
 import sys
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.field import Field
-from opencmiss.zinc.result import RESULT_OK, RESULT_ERROR_NOT_FOUND
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.field import Field
+from cmlibs.zinc.result import RESULT_OK, RESULT_ERROR_NOT_FOUND
 
 
 class RegionRecordChange:

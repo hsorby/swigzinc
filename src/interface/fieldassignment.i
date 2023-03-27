@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") fieldassignment
+%module(package="cmlibs.zinc") fieldassignment
 
 %import "field.i"
 %import "node.i"

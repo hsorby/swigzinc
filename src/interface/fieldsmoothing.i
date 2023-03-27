@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") fieldsmoothing
+%module(package="cmlibs.zinc") fieldsmoothing
 
 %{
 #include "opencmiss/zinc/fieldsmoothing.hpp"

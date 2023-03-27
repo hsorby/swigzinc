@@ -11,7 +11,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") selection
+%module(package="cmlibs.zinc") selection
 
 %extend OpenCMISS::Zinc::Selectionnotifier {
 
