@@ -20,7 +20,7 @@
 %import "stream.i"
 
 %{
-#include "opencmiss/zinc/streamregion.hpp"
+#include "cmlibs/zinc/streamregion.hpp"
 %}
 
-%include "opencmiss/zinc/streamregion.hpp"
+%include "cmlibs/zinc/streamregion.hpp"

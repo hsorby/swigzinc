@@ -51,8 +51,8 @@
 }
 
 %{
-#include "opencmiss/zinc/material.hpp"
-#include "opencmiss/zinc/fieldconditional.hpp"
+#include "cmlibs/zinc/material.hpp"
+#include "cmlibs/zinc/fieldconditional.hpp"
 
 static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialmoduleevent, 
 	void *user_data)
@@ -76,4 +76,4 @@ static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialm
 }
 %}
 
-%include "opencmiss/zinc/material.hpp"
+%include "cmlibs/zinc/material.hpp"

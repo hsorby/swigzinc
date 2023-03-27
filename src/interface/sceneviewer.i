@@ -50,8 +50,8 @@
 %ignore CMLibs::Zinc::Sceneviewernotifier::clearCallback();
 
 %{
-#include "opencmiss/zinc/sceneviewer.hpp"
-#include "opencmiss/zinc/sceneviewerinput.hpp"
+#include "cmlibs/zinc/sceneviewer.hpp"
+#include "cmlibs/zinc/sceneviewerinput.hpp"
 
 static void callbackToPython(cmzn_sceneviewerevent_id sceneviewernotifier_event, void *user_data)
 {
@@ -71,5 +71,5 @@ static void callbackToPython(cmzn_sceneviewerevent_id sceneviewernotifier_event,
 }
 %}
 
-%include "opencmiss/zinc/sceneviewer.hpp"
+%include "cmlibs/zinc/sceneviewer.hpp"
 

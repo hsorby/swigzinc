@@ -55,10 +55,10 @@ int clearCallback()
 %ignore CMLibs::Zinc::Regionnotifier::clearCallback();
 
 %{
-#include "opencmiss/zinc/fieldmodule.hpp"
-#include "opencmiss/zinc/region.hpp"
-#include "opencmiss/zinc/scene.hpp"
-#include "opencmiss/zinc/streamregion.hpp"
+#include "cmlibs/zinc/fieldmodule.hpp"
+#include "cmlibs/zinc/region.hpp"
+#include "cmlibs/zinc/scene.hpp"
+#include "cmlibs/zinc/streamregion.hpp"
 
 static void regionCallbackToPython(cmzn_regionevent_id regionevent, void *user_data)
 {
@@ -80,5 +80,5 @@ static void regionCallbackToPython(cmzn_regionevent_id regionevent, void *user_d
 }
 %}
 
-%include "opencmiss/zinc/region.hpp"
+%include "cmlibs/zinc/region.hpp"
 

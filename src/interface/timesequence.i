@@ -13,7 +13,7 @@
 %module(package="cmlibs.zinc") timesequence
 
 %{
-#include "opencmiss/zinc/timesequence.hpp"
+#include "cmlibs/zinc/timesequence.hpp"
 %}
 
-%include "opencmiss/zinc/timesequence.hpp"
+%include "cmlibs/zinc/timesequence.hpp"

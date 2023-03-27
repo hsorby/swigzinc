@@ -31,7 +31,7 @@
 }
 
 %{
-#include "opencmiss/zinc/shader.hpp"
+#include "cmlibs/zinc/shader.hpp"
 %}
 
-%include "opencmiss/zinc/shader.hpp"
+%include "cmlibs/zinc/shader.hpp"

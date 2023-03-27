@@ -17,9 +17,9 @@
 %import "node.i"
 
 %{
-#include "opencmiss/zinc/fieldassignment.hpp"
-#include "opencmiss/zinc/fieldmodule.hpp"
+#include "cmlibs/zinc/fieldassignment.hpp"
+#include "cmlibs/zinc/fieldmodule.hpp"
 %}
 
-%include "opencmiss/zinc/fieldassignment.hpp"
+%include "cmlibs/zinc/fieldassignment.hpp"
 

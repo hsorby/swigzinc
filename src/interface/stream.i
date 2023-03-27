@@ -16,10 +16,10 @@
 %typemap(in) (const char *file_name) = (const char *name);
 
 %{
-#include "opencmiss/zinc/stream.hpp"
-#include "opencmiss/zinc/streamimage.hpp"
-#include "opencmiss/zinc/streamregion.hpp"
-#include "opencmiss/zinc/streamscene.hpp"
+#include "cmlibs/zinc/stream.hpp"
+#include "cmlibs/zinc/streamimage.hpp"
+#include "cmlibs/zinc/streamregion.hpp"
+#include "cmlibs/zinc/streamscene.hpp"
 %}
 
 %extend CMLibs::Zinc::Streaminformation {
@@ -31,4 +31,4 @@
 
 %ignore CMLibs::Zinc::Streaminformation::createStreamresourceMemoryBuffer(const void *buffer, unsigned int buffer_length);
 
-%include "opencmiss/zinc/stream.hpp"
+%include "cmlibs/zinc/stream.hpp"

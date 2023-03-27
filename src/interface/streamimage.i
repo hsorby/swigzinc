@@ -18,7 +18,7 @@
 %import "stream.i"
 
 %{
-#include "opencmiss/zinc/streamimage.hpp"
+#include "cmlibs/zinc/streamimage.hpp"
 %}
 
-%include "opencmiss/zinc/streamimage.hpp"
+%include "cmlibs/zinc/streamimage.hpp"

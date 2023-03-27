@@ -21,10 +21,10 @@
 %import "sceneviewer.i"
 
 %{
-#include "opencmiss/zinc/fieldgroup.hpp"
-#include "opencmiss/zinc/scene.hpp"
-#include "opencmiss/zinc/scenefilter.hpp"
-#include "opencmiss/zinc/scenepicker.hpp"
+#include "cmlibs/zinc/fieldgroup.hpp"
+#include "cmlibs/zinc/scene.hpp"
+#include "cmlibs/zinc/scenefilter.hpp"
+#include "cmlibs/zinc/scenepicker.hpp"
 %}
 
-%include "opencmiss/zinc/scenepicker.hpp"
+%include "cmlibs/zinc/scenepicker.hpp"

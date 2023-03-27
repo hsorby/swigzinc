@@ -16,7 +16,7 @@
 %import "element.i"
 
 %{
-#include "opencmiss/zinc/fieldrange.hpp"
+#include "cmlibs/zinc/fieldrange.hpp"
 %}
 
-%include "opencmiss/zinc/fieldrange.hpp"
+%include "cmlibs/zinc/fieldrange.hpp"

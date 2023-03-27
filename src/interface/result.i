@@ -13,7 +13,7 @@
 %module(package="cmlibs.zinc") result
 
 %{
-#include "opencmiss/zinc/result.hpp"
+#include "cmlibs/zinc/result.hpp"
 %}
 
-%include "opencmiss/zinc/result.hpp"
+%include "cmlibs/zinc/result.hpp"

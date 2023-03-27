@@ -31,14 +31,14 @@
 }
 
 %{
-#include "opencmiss/zinc/node.hpp"
-#include "opencmiss/zinc/nodetemplate.hpp"
-#include "opencmiss/zinc/nodeset.hpp"
-#include "opencmiss/zinc/field.hpp"
-#include "opencmiss/zinc/fieldconditional.hpp"
+#include "cmlibs/zinc/node.hpp"
+#include "cmlibs/zinc/nodetemplate.hpp"
+#include "cmlibs/zinc/nodeset.hpp"
+#include "cmlibs/zinc/field.hpp"
+#include "cmlibs/zinc/fieldconditional.hpp"
 %}
 
-%include "opencmiss/zinc/node.hpp"
-%include "opencmiss/zinc/nodetemplate.hpp"
-%include "opencmiss/zinc/nodeset.hpp"
+%include "cmlibs/zinc/node.hpp"
+%include "cmlibs/zinc/nodetemplate.hpp"
+%include "cmlibs/zinc/nodeset.hpp"
 

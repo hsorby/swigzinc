@@ -34,17 +34,17 @@
 }
 
 %{
-#include "opencmiss/zinc/fieldimage.hpp"
-#include "opencmiss/zinc/element.hpp"
-#include "opencmiss/zinc/elementbasis.hpp"
-#include "opencmiss/zinc/elementfieldtemplate.hpp"
-#include "opencmiss/zinc/elementtemplate.hpp"
-#include "opencmiss/zinc/mesh.hpp"
+#include "cmlibs/zinc/fieldimage.hpp"
+#include "cmlibs/zinc/element.hpp"
+#include "cmlibs/zinc/elementbasis.hpp"
+#include "cmlibs/zinc/elementfieldtemplate.hpp"
+#include "cmlibs/zinc/elementtemplate.hpp"
+#include "cmlibs/zinc/mesh.hpp"
 %}
 
-%include "opencmiss/zinc/elementbasis.hpp"
-%include "opencmiss/zinc/elementfieldtemplate.hpp"
-%include "opencmiss/zinc/elementtemplate.hpp"
-%include "opencmiss/zinc/element.hpp"
-%include "opencmiss/zinc/mesh.hpp"
+%include "cmlibs/zinc/elementbasis.hpp"
+%include "cmlibs/zinc/elementfieldtemplate.hpp"
+%include "cmlibs/zinc/elementtemplate.hpp"
+%include "cmlibs/zinc/element.hpp"
+%include "cmlibs/zinc/mesh.hpp"
 

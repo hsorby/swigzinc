@@ -16,9 +16,9 @@
 %import "field.i"
 
 %{
-#include "opencmiss/zinc/fieldmodule.hpp"
-#include "opencmiss/zinc/fieldparameters.hpp"
+#include "cmlibs/zinc/fieldmodule.hpp"
+#include "cmlibs/zinc/fieldparameters.hpp"
 %}
 
-%include "opencmiss/zinc/fieldparameters.hpp"
+%include "cmlibs/zinc/fieldparameters.hpp"
 

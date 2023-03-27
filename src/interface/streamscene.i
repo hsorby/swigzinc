@@ -19,7 +19,7 @@
 %import "stream.i"
 
 %{
-#include "opencmiss/zinc/streamscene.hpp"
+#include "cmlibs/zinc/streamscene.hpp"
 %}
 
-%include "opencmiss/zinc/streamscene.hpp"
+%include "cmlibs/zinc/streamscene.hpp"

@@ -32,11 +32,11 @@
 }
 
 %{
-#include "opencmiss/zinc/core.h"
-#include "opencmiss/zinc/fieldmodule.hpp"
-#include "opencmiss/zinc/graphics.hpp"
-#include "opencmiss/zinc/scene.hpp"
+#include "cmlibs/zinc/core.h"
+#include "cmlibs/zinc/fieldmodule.hpp"
+#include "cmlibs/zinc/graphics.hpp"
+#include "cmlibs/zinc/scene.hpp"
 %}
 
-%include "opencmiss/zinc/graphics.hpp"
+%include "cmlibs/zinc/graphics.hpp"
 

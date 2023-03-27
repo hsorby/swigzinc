@@ -30,13 +30,13 @@
 }
 
 %{
-#include "opencmiss/zinc/scene.hpp"
-#include "opencmiss/zinc/scenepicker.hpp"
-#include "opencmiss/zinc/shader.hpp"
-#include "opencmiss/zinc/spectrum.hpp"
-#include "opencmiss/zinc/streamscene.hpp"
-#include "opencmiss/zinc/sceneviewer.hpp"
+#include "cmlibs/zinc/scene.hpp"
+#include "cmlibs/zinc/scenepicker.hpp"
+#include "cmlibs/zinc/shader.hpp"
+#include "cmlibs/zinc/spectrum.hpp"
+#include "cmlibs/zinc/streamscene.hpp"
+#include "cmlibs/zinc/sceneviewer.hpp"
 %}
 
-%include "opencmiss/zinc/scene.hpp"
+%include "cmlibs/zinc/scene.hpp"
 
