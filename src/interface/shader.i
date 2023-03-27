@@ -16,15 +16,15 @@
 %include "integervaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 
-%extend OpenCMISS::Zinc::Shaderprogram {
-	bool operator==(const OpenCMISS::Zinc::Shaderprogram& other) const
+%extend CMLibs::Zinc::Shaderprogram {
+	bool operator==(const CMLibs::Zinc::Shaderprogram& other) const
 	{
 		return *($self) == other;
 	}
 }
 
-%extend OpenCMISS::Zinc::Shaderuniforms {
-	bool operator==(const OpenCMISS::Zinc::Shaderuniforms& other) const
+%extend CMLibs::Zinc::Shaderuniforms {
+	bool operator==(const CMLibs::Zinc::Shaderuniforms& other) const
 	{
 		return *($self) == other;
 	}

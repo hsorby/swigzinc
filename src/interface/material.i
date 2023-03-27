@@ -19,7 +19,7 @@
 %import "context.i"
 %import "field.i"
 
-%extend OpenCMISS::Zinc::Materialmodulenotifier {
+%extend CMLibs::Zinc::Materialmodulenotifier {
 	int setCallback(PyObject *callbackObject)
 	{
 		PyObject *my_callback = NULL;
@@ -41,10 +41,10 @@
 	}
 }
 
-%ignore OpenCMISS::Zinc::Materialmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Materialmodulenotifier::clearCallback();
 
-%extend OpenCMISS::Zinc::Material {
-	bool operator==(const OpenCMISS::Zinc::Material& other) const
+%extend CMLibs::Zinc::Material {
+	bool operator==(const CMLibs::Zinc::Material& other) const
 	{
 		return *($self) == other;
 	}
@@ -62,8 +62,8 @@ static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialm
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert materialmoduleevent to python object */
 	PyObject *obj = NULL;
-	OpenCMISS::Zinc::Materialmoduleevent *materialmoduleEvent = 
-		new OpenCMISS::Zinc::Materialmoduleevent(cmzn_materialmoduleevent_access(materialmoduleevent));
+	CMLibs::Zinc::Materialmoduleevent *materialmoduleEvent = 
+		new CMLibs::Zinc::Materialmoduleevent(cmzn_materialmoduleevent_access(materialmoduleevent));
 	obj = SWIG_NewPointerObj(SWIG_as_voidptr(materialmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Materialmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);

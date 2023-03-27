@@ -22,8 +22,8 @@
 %import "spectrum.i"
 %import "streamscene.i"
 
-%extend OpenCMISS::Zinc::Scene {
-	bool operator==(const OpenCMISS::Zinc::Scene& other) const
+%extend CMLibs::Zinc::Scene {
+	bool operator==(const CMLibs::Zinc::Scene& other) const
 	{
 		return *($self) == other;
 	}

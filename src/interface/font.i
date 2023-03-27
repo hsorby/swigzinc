@@ -16,8 +16,8 @@
 
 %import "graphics.i"
 
-%extend OpenCMISS::Zinc::Font {
-	bool operator==(const OpenCMISS::Zinc::Font& other) const
+%extend CMLibs::Zinc::Font {
+	bool operator==(const CMLibs::Zinc::Font& other) const
 	{
 		return *($self) == other;
 	}

@@ -24,8 +24,8 @@
 %import "spectrum.i"
 %import "tessellation.i"
 
-%extend OpenCMISS::Zinc::Graphics {
-	bool operator==(const OpenCMISS::Zinc::Graphics& other) const
+%extend CMLibs::Zinc::Graphics {
+	bool operator==(const CMLibs::Zinc::Graphics& other) const
 	{
 		return *($self) == other;
 	}

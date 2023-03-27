@@ -22,14 +22,14 @@
 %import "scene.i"
 %import "streamregion.i"
 
-%extend OpenCMISS::Zinc::Region {
-	bool operator==(const OpenCMISS::Zinc::Region& other) const
+%extend CMLibs::Zinc::Region {
+	bool operator==(const CMLibs::Zinc::Region& other) const
 	{
 		return *($self) == other;
 	}
 }
 
-%extend OpenCMISS::Zinc::Regionnotifier {
+%extend CMLibs::Zinc::Regionnotifier {
 
 int setCallback(PyObject *callbackObject)
 {
@@ -52,7 +52,7 @@ int clearCallback()
 }
 }
 
-%ignore OpenCMISS::Zinc::Regionnotifier::clearCallback();
+%ignore CMLibs::Zinc::Regionnotifier::clearCallback();
 
 %{
 #include "opencmiss/zinc/fieldmodule.hpp"
@@ -67,7 +67,7 @@ static void regionCallbackToPython(cmzn_regionevent_id regionevent, void *user_d
     PyObject *my_callback = (PyObject *)user_data;
     /* convert regionevent to python object */
     PyObject *obj = NULL;
-    OpenCMISS::Zinc::Regionevent *regionEvent = new OpenCMISS::Zinc::Regionevent(cmzn_regionevent_access(regionevent));
+    CMLibs::Zinc::Regionevent *regionEvent = new CMLibs::Zinc::Regionevent(cmzn_regionevent_access(regionevent));
     obj = SWIG_NewPointerObj(SWIG_as_voidptr(regionEvent), SWIGTYPE_p_OpenCMISS__Zinc__Regionevent, 1);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);

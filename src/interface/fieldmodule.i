@@ -18,7 +18,7 @@
 %typemap(in) (const char *meshName) = (const char *name);
 %typemap(in) (const char *stringConstant) = (const char *name);
 
-%extend OpenCMISS::Zinc::Fieldmodulenotifier {
+%extend CMLibs::Zinc::Fieldmodulenotifier {
 
     int setCallback(PyObject *callbackObject)
     {
@@ -41,9 +41,9 @@
     }
 }
 
-%ignore OpenCMISS::Zinc::Fieldmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Fieldmodulenotifier::clearCallback();
 // ignore following as array overload works the same
-%ignore OpenCMISS::Zinc::Fieldmodule::createFieldComponent(const Field& sourceField, int sourceComponentIndex);
+%ignore CMLibs::Zinc::Fieldmodule::createFieldComponent(const Field& sourceField, int sourceComponentIndex);
 
 %include "doublevaluesarraytypemap.i"
 %include "integervaluesarraytypemap.i"
@@ -92,7 +92,7 @@ static void fieldmoduleCallbackToPython(cmzn_fieldmoduleevent_id fieldmoduleeven
     PyObject *my_callback = (PyObject *)user_data;
     /* convert fieldmoduleevent to python object */
     PyObject *obj = NULL;
-    OpenCMISS::Zinc::Fieldmoduleevent *fieldmoduleEvent = new OpenCMISS::Zinc::Fieldmoduleevent(cmzn_fieldmoduleevent_access(fieldmoduleevent));
+    CMLibs::Zinc::Fieldmoduleevent *fieldmoduleEvent = new CMLibs::Zinc::Fieldmoduleevent(cmzn_fieldmoduleevent_access(fieldmoduleevent));
     obj = SWIG_NewPointerObj(SWIG_as_voidptr(fieldmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Fieldmoduleevent, SWIG_POINTER_OWN |  0);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);

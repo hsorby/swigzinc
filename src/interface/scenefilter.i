@@ -18,8 +18,8 @@
 %import "graphics.i"
 %import "region.i"
 
-%extend OpenCMISS::Zinc::Scenefilter {
-	bool operator==(const OpenCMISS::Zinc::Scenefilter& other) const
+%extend CMLibs::Zinc::Scenefilter {
+	bool operator==(const CMLibs::Zinc::Scenefilter& other) const
 	{
 		return *($self) == other;
 	}

@@ -19,15 +19,15 @@
 %import "field.i"
 %import "node.i"
 
-%extend OpenCMISS::Zinc::Element {
-	bool operator==(const OpenCMISS::Zinc::Element& other) const
+%extend CMLibs::Zinc::Element {
+	bool operator==(const CMLibs::Zinc::Element& other) const
 	{
 		return *($self) == other;
 	}
 }
 
-%extend OpenCMISS::Zinc::Mesh {
-	bool operator==(const OpenCMISS::Zinc::Mesh& other) const
+%extend CMLibs::Zinc::Mesh {
+	bool operator==(const CMLibs::Zinc::Mesh& other) const
 	{
 		return *($self) == other;
 	}

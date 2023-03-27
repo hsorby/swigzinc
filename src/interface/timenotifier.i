@@ -12,7 +12,7 @@
 
 %module(package="cmlibs.zinc") timenotifier
 
-%extend OpenCMISS::Zinc::Timenotifier {
+%extend CMLibs::Zinc::Timenotifier {
 
     int setCallback(PyObject *callbackObject)
     {
@@ -36,7 +36,7 @@
     }
 }
 
-%ignore OpenCMISS::Zinc::Timenotifier::clearCallback();
+%ignore CMLibs::Zinc::Timenotifier::clearCallback();
 
 %import "timekeeper.i"
 
@@ -50,7 +50,7 @@ static void callbackToPython(cmzn_timenotifierevent_id timenotifier_event, void 
     PyObject *my_callback = (PyObject *)user_data;
     /* convert timenotifier to python object */
     /* Time to call the callback */
-    OpenCMISS::Zinc::Timenotifierevent *timenotifierevent = new OpenCMISS::Zinc::Timenotifierevent(cmzn_timenotifierevent_access(timenotifier_event));
+    CMLibs::Zinc::Timenotifierevent *timenotifierevent = new CMLibs::Zinc::Timenotifierevent(cmzn_timenotifierevent_access(timenotifier_event));
     PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(timenotifierevent), SWIGTYPE_p_OpenCMISS__Zinc__Timenotifierevent, 1);
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);

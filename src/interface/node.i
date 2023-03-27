@@ -16,15 +16,15 @@
 
 %import "field.i"
 
-%extend OpenCMISS::Zinc::Node {
-	bool operator==(const OpenCMISS::Zinc::Node& other) const
+%extend CMLibs::Zinc::Node {
+	bool operator==(const CMLibs::Zinc::Node& other) const
 	{
 		return *($self) == other;
 	}
 }
 
-%extend OpenCMISS::Zinc::Nodeset {
-	bool operator==(const OpenCMISS::Zinc::Nodeset& other) const
+%extend CMLibs::Zinc::Nodeset {
+	bool operator==(const CMLibs::Zinc::Nodeset& other) const
 	{
 		return *($self) == other;
 	}

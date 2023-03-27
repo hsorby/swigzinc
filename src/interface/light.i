@@ -17,8 +17,8 @@
 %include "doublevaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 
-%extend OpenCMISS::Zinc::Light {
-	bool operator==(const OpenCMISS::Zinc::Light& other) const
+%extend CMLibs::Zinc::Light {
+	bool operator==(const CMLibs::Zinc::Light& other) const
 	{
 		return *($self) == other;
 	}

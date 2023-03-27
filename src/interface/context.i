@@ -31,8 +31,8 @@
 %import "timekeeper.i"
 %include "integervaluesarraytypemap.i"
 
-%extend OpenCMISS::Zinc::Context {
-	bool operator==(const OpenCMISS::Zinc::Context& other) const
+%extend CMLibs::Zinc::Context {
+	bool operator==(const CMLibs::Zinc::Context& other) const
 	{
 		return *($self) == other;
 	}

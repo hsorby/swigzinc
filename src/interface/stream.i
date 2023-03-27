@@ -22,13 +22,13 @@
 #include "opencmiss/zinc/streamscene.hpp"
 %}
 
-%extend OpenCMISS::Zinc::Streaminformation {
-	OpenCMISS::Zinc::StreamresourceMemory createStreamresourceMemoryBuffer(const void *buffer, unsigned int buffer_length)
+%extend CMLibs::Zinc::Streaminformation {
+	CMLibs::Zinc::StreamresourceMemory createStreamresourceMemoryBuffer(const void *buffer, unsigned int buffer_length)
 	{
 		return  $self->createStreamresourceMemoryBufferCopy(buffer, buffer_length);
 	}
 }
 
-%ignore OpenCMISS::Zinc::Streaminformation::createStreamresourceMemoryBuffer(const void *buffer, unsigned int buffer_length);
+%ignore CMLibs::Zinc::Streaminformation::createStreamresourceMemoryBuffer(const void *buffer, unsigned int buffer_length);
 
 %include "opencmiss/zinc/stream.hpp"

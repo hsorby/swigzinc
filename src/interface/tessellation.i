@@ -12,7 +12,7 @@
 
 %module(package="cmlibs.zinc") tessellation
 
-%extend OpenCMISS::Zinc::Tessellationmodulenotifier {
+%extend CMLibs::Zinc::Tessellationmodulenotifier {
 
 	int setCallback(PyObject *callbackObject)
 	{
@@ -35,13 +35,13 @@
 	}
 }
 
-%ignore OpenCMISS::Zinc::Tessellationmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Tessellationmodulenotifier::clearCallback();
 
 %include "integervaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 
-%extend OpenCMISS::Zinc::Tessellation {
-	bool operator==(const OpenCMISS::Zinc::Tessellation& other) const
+%extend CMLibs::Zinc::Tessellation {
+	bool operator==(const CMLibs::Zinc::Tessellation& other) const
 	{
 		return *($self) == other;
 	}
@@ -58,8 +58,8 @@ static void tessellationmoduleCallbackToPython(cmzn_tessellationmoduleevent_id t
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert tessellationmoduleevent to python object */
 	PyObject *obj = NULL;
-	OpenCMISS::Zinc::Tessellationmoduleevent *tessellationmoduleEvent = 
-		new OpenCMISS::Zinc::Tessellationmoduleevent(cmzn_tessellationmoduleevent_access(tessellationmoduleevent));
+	CMLibs::Zinc::Tessellationmoduleevent *tessellationmoduleEvent = 
+		new CMLibs::Zinc::Tessellationmoduleevent(cmzn_tessellationmoduleevent_access(tessellationmoduleevent));
 	obj = SWIG_NewPointerObj(SWIG_as_voidptr(tessellationmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Tessellationmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
