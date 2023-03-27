@@ -60,7 +60,7 @@ static void tessellationmoduleCallbackToPython(cmzn_tessellationmoduleevent_id t
 	PyObject *obj = NULL;
 	CMLibs::Zinc::Tessellationmoduleevent *tessellationmoduleEvent = 
 		new CMLibs::Zinc::Tessellationmoduleevent(cmzn_tessellationmoduleevent_access(tessellationmoduleevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(tessellationmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Tessellationmoduleevent, 1);
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(tessellationmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Tessellationmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);

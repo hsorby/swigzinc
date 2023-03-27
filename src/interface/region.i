@@ -68,7 +68,7 @@ static void regionCallbackToPython(cmzn_regionevent_id regionevent, void *user_d
     /* convert regionevent to python object */
     PyObject *obj = NULL;
     CMLibs::Zinc::Regionevent *regionEvent = new CMLibs::Zinc::Regionevent(cmzn_regionevent_access(regionevent));
-    obj = SWIG_NewPointerObj(SWIG_as_voidptr(regionEvent), SWIGTYPE_p_OpenCMISS__Zinc__Regionevent, 1);
+    obj = SWIG_NewPointerObj(SWIG_as_voidptr(regionEvent), SWIGTYPE_p_CMLibs__Zinc__Regionevent, 1);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);

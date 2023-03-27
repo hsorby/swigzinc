@@ -64,7 +64,7 @@ static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialm
 	PyObject *obj = NULL;
 	CMLibs::Zinc::Materialmoduleevent *materialmoduleEvent = 
 		new CMLibs::Zinc::Materialmoduleevent(cmzn_materialmoduleevent_access(materialmoduleevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(materialmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Materialmoduleevent, 1);
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(materialmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Materialmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);

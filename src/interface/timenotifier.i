@@ -51,7 +51,7 @@ static void callbackToPython(cmzn_timenotifierevent_id timenotifier_event, void 
     /* convert timenotifier to python object */
     /* Time to call the callback */
     CMLibs::Zinc::Timenotifierevent *timenotifierevent = new CMLibs::Zinc::Timenotifierevent(cmzn_timenotifierevent_access(timenotifier_event));
-    PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(timenotifierevent), SWIGTYPE_p_OpenCMISS__Zinc__Timenotifierevent, 1);
+    PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(timenotifierevent), SWIGTYPE_p_CMLibs__Zinc__Timenotifierevent, 1);
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);
     Py_DECREF(arglist);

@@ -61,7 +61,7 @@ static void loggerCallbackToPython(cmzn_loggerevent_id loggerevent,
 	PyObject *obj = NULL;
 	CMLibs::Zinc::Loggerevent *loggerEvent = 
 		new CMLibs::Zinc::Loggerevent(cmzn_loggerevent_access(loggerevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(loggerEvent), SWIGTYPE_p_OpenCMISS__Zinc__Loggerevent, 1);
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(loggerEvent), SWIGTYPE_p_CMLibs__Zinc__Loggerevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);

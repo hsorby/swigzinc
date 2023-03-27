@@ -58,7 +58,7 @@ static void spectrummoduleCallbackToPython(cmzn_spectrummoduleevent_id spectrumm
     /* convert spectrummoduleevent to python object */
     PyObject *obj = NULL;
     CMLibs::Zinc::Spectrummoduleevent *spectrummoduleEvent = new CMLibs::Zinc::Spectrummoduleevent(cmzn_spectrummoduleevent_access(spectrummoduleevent));
-    obj = SWIG_NewPointerObj(SWIG_as_voidptr(spectrummoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Spectrummoduleevent, 1);
+    obj = SWIG_NewPointerObj(SWIG_as_voidptr(spectrummoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Spectrummoduleevent, 1);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);

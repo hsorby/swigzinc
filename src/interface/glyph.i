@@ -63,7 +63,7 @@ static void glyphmoduleCallbackToPython(cmzn_glyphmoduleevent_id glyphmoduleeven
 	PyObject *obj = NULL;
 	CMLibs::Zinc::Glyphmoduleevent *glyphmoduleEvent = 
 		new CMLibs::Zinc::Glyphmoduleevent(cmzn_glyphmoduleevent_access(glyphmoduleevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(glyphmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Glyphmoduleevent, 1);
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(glyphmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Glyphmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);

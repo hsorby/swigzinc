@@ -49,7 +49,7 @@ static void selectionCallbackToPython(cmzn_selectionevent_id selectionevent, voi
     /* convert selectionevent to python object */
     PyObject *obj = NULL;
     CMLibs::Zinc::Selectionevent *selectionEvent = new CMLibs::Zinc::Selectionevent(cmzn_selectionevent_access(selectionevent));
-    obj = SWIG_NewPointerObj(SWIG_as_voidptr(selectionEvent), SWIGTYPE_p_OpenCMISS__Zinc__Selectionevent, 1);
+    obj = SWIG_NewPointerObj(SWIG_as_voidptr(selectionEvent), SWIGTYPE_p_CMLibs__Zinc__Selectionevent, 1);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);
