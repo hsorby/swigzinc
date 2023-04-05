@@ -14,10 +14,10 @@ Created on Aug 31, 2013
 import sys
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.sceneviewer import Sceneviewer
-from opencmiss.zinc.sceneviewerinput import Sceneviewerinput
-from opencmiss.zinc import status
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.sceneviewer import Sceneviewer
+from cmlibs.zinc.sceneviewerinput import Sceneviewerinput
+from cmlibs.zinc import status
 
 class SceneviewerTestCase(unittest.TestCase):
 

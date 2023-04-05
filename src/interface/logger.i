@@ -3,16 +3,16 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") logger
+%module(package="cmlibs.zinc") logger
 
-%extend OpenCMISS::Zinc::Loggernotifier {
+%extend CMLibs::Zinc::Loggernotifier {
 
 	int setCallback(PyObject *callbackObject)
 	{
@@ -35,21 +35,21 @@
 	}
 }
 
-%ignore OpenCMISS::Zinc::Loggernotifier::clearCallback();
+%ignore CMLibs::Zinc::Loggernotifier::clearCallback();
 
 %include "integervaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 
-%extend OpenCMISS::Zinc::Logger {
-	bool operator==(const OpenCMISS::Zinc::Logger& other) const
+%extend CMLibs::Zinc::Logger {
+	bool operator==(const CMLibs::Zinc::Logger& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/core.h"
-#include "opencmiss/zinc/logger.hpp"
+#include "cmlibs/zinc/core.h"
+#include "cmlibs/zinc/logger.hpp"
 
 static void loggerCallbackToPython(cmzn_loggerevent_id loggerevent, 
 	void *user_data)
@@ -59,9 +59,9 @@ static void loggerCallbackToPython(cmzn_loggerevent_id loggerevent,
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert loggerevent to python object */
 	PyObject *obj = NULL;
-	OpenCMISS::Zinc::Loggerevent *loggerEvent = 
-		new OpenCMISS::Zinc::Loggerevent(cmzn_loggerevent_access(loggerevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(loggerEvent), SWIGTYPE_p_OpenCMISS__Zinc__Loggerevent, 1);
+	CMLibs::Zinc::Loggerevent *loggerEvent = 
+		new CMLibs::Zinc::Loggerevent(cmzn_loggerevent_access(loggerevent));
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(loggerEvent), SWIGTYPE_p_CMLibs__Zinc__Loggerevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);
@@ -73,4 +73,4 @@ static void loggerCallbackToPython(cmzn_loggerevent_id loggerevent,
 }
 %}
 
-%include "opencmiss/zinc/logger.hpp"
+%include "cmlibs/zinc/logger.hpp"

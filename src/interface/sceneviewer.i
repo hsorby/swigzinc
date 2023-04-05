@@ -3,14 +3,14 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") sceneviewer
+%module(package="cmlibs.zinc") sceneviewer
 %include "typemaps.i"
 %apply double *OUTPUT { double *eyex, double *eyey, double *eyez, double *lookatx, double *lookaty, double *lookatz, double *upx, double *upy, double *upz};
 %apply double *OUTPUT { double *left, double *right, double *bottom, double *top, double *near_plane, double *far_plane};
@@ -22,7 +22,7 @@
 %import "light.i"
 %import "scene.i"
 
-%extend OpenCMISS::Zinc::Sceneviewernotifier {
+%extend CMLibs::Zinc::Sceneviewernotifier {
 
 	int setCallback(PyObject *callbackObject)
 	{
@@ -47,11 +47,11 @@
 
 }
 
-%ignore OpenCMISS::Zinc::Sceneviewernotifier::clearCallback();
+%ignore CMLibs::Zinc::Sceneviewernotifier::clearCallback();
 
 %{
-#include "opencmiss/zinc/sceneviewer.hpp"
-#include "opencmiss/zinc/sceneviewerinput.hpp"
+#include "cmlibs/zinc/sceneviewer.hpp"
+#include "cmlibs/zinc/sceneviewerinput.hpp"
 
 static void callbackToPython(cmzn_sceneviewerevent_id sceneviewernotifier_event, void *user_data)
 {
@@ -60,9 +60,9 @@ static void callbackToPython(cmzn_sceneviewerevent_id sceneviewernotifier_event,
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert sceneviewernotifier to python object */
 	/* Time to call the callback */
-	OpenCMISS::Zinc::Sceneviewerevent *sceneviewerevent = new OpenCMISS::Zinc::Sceneviewerevent(
+	CMLibs::Zinc::Sceneviewerevent *sceneviewerevent = new CMLibs::Zinc::Sceneviewerevent(
 	cmzn_sceneviewerevent_access(sceneviewernotifier_event));
-	PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(sceneviewerevent), SWIGTYPE_p_OpenCMISS__Zinc__Sceneviewerevent, 1);
+	PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(sceneviewerevent), SWIGTYPE_p_CMLibs__Zinc__Sceneviewerevent, 1);
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);
 	Py_DECREF(arglist);
@@ -71,5 +71,5 @@ static void callbackToPython(cmzn_sceneviewerevent_id sceneviewernotifier_event,
 }
 %}
 
-%include "opencmiss/zinc/sceneviewer.hpp"
+%include "cmlibs/zinc/sceneviewer.hpp"
 

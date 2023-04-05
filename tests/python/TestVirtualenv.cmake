@@ -19,11 +19,11 @@ if (NOT RES EQUAL 0)
     message(FATAL_ERROR "Installing bindings package failed")
 endif()
 execute_process(
-    COMMAND ${VENV_BIN}/python -c "from opencmiss.zinc.context import Context"
+    COMMAND ${VENV_BIN}/python -c "from cmlibs.zinc.context import Context"
     RESULT_VARIABLE RES
 )
 if (NOT RES EQUAL 0)
-    message(FATAL_ERROR "Importing opencmiss zinc package in virtual environment failed")
+    message(FATAL_ERROR "Importing cmlibs zinc package in virtual environment failed")
 endif()
 # Dont forget to clean up!
 file(REMOVE_RECURSE ${WD}/test_venv)

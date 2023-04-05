@@ -13,9 +13,9 @@ Created on May 23, 2013
 '''
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.sceneviewer import Sceneviewer
-import opencmiss.zinc.scenecoordinatesystem
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.sceneviewer import Sceneviewer
+import cmlibs.zinc.scenecoordinatesystem
 
 class SceneviewerProjectionFieldTestCase(unittest.TestCase):
 
@@ -36,8 +36,8 @@ class SceneviewerProjectionFieldTestCase(unittest.TestCase):
         scene_viewer_module = self.context.getSceneviewermodule()
         scene_viewer = scene_viewer_module.createSceneviewer(Sceneviewer.BUFFERING_MODE_DOUBLE, Sceneviewer.STEREO_MODE_DEFAULT)
         f1 = self.field_module.createFieldSceneviewerProjection(scene_viewer,
-            opencmiss.zinc.scenecoordinatesystem.SCENECOORDINATESYSTEM_LOCAL,
-            opencmiss.zinc.scenecoordinatesystem.SCENECOORDINATESYSTEM_WINDOW_PIXEL_TOP_LEFT)
+            cmlibs.zinc.scenecoordinatesystem.SCENECOORDINATESYSTEM_LOCAL,
+            cmlibs.zinc.scenecoordinatesystem.SCENECOORDINATESYSTEM_WINDOW_PIXEL_TOP_LEFT)
         self.assertTrue(f1.isValid())
 
 def suite():

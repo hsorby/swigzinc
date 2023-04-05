@@ -4,21 +4,21 @@
  * Swig interface file for wrapping api functions in api/fieldmodule.hpp
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") fieldmodule
+%module(package="cmlibs.zinc") fieldmodule
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *fieldName) = (const char *name);
 %typemap(in) (const char *nodeset_name) = (const char *name);
 %typemap(in) (const char *meshName) = (const char *name);
 %typemap(in) (const char *stringConstant) = (const char *name);
 
-%extend OpenCMISS::Zinc::Fieldmodulenotifier {
+%extend CMLibs::Zinc::Fieldmodulenotifier {
 
     int setCallback(PyObject *callbackObject)
     {
@@ -41,9 +41,9 @@
     }
 }
 
-%ignore OpenCMISS::Zinc::Fieldmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Fieldmodulenotifier::clearCallback();
 // ignore following as array overload works the same
-%ignore OpenCMISS::Zinc::Fieldmodule::createFieldComponent(const Field& sourceField, int sourceComponentIndex);
+%ignore CMLibs::Zinc::Fieldmodule::createFieldComponent(const Field& sourceField, int sourceComponentIndex);
 
 %include "doublevaluesarraytypemap.i"
 %include "integervaluesarraytypemap.i"
@@ -58,32 +58,32 @@
 %import "fieldsmoothing.i"
 
 %{
-#include "opencmiss/zinc/fieldalias.hpp"
-#include "opencmiss/zinc/fieldapply.hpp"
-#include "opencmiss/zinc/fieldarithmeticoperators.hpp"
-#include "opencmiss/zinc/fieldcache.hpp"
-#include "opencmiss/zinc/fieldcomposite.hpp"
-#include "opencmiss/zinc/fieldconditional.hpp"
-#include "opencmiss/zinc/fieldconstant.hpp"
-#include "opencmiss/zinc/fieldcoordinatetransformation.hpp"
-#include "opencmiss/zinc/fieldderivatives.hpp"
-#include "opencmiss/zinc/fieldfibres.hpp"
-#include "opencmiss/zinc/fieldfiniteelement.hpp"
-#include "opencmiss/zinc/fieldsubobjectgroup.hpp"
-#include "opencmiss/zinc/fieldgroup.hpp"
-#include "opencmiss/zinc/fieldimage.hpp"
-#include "opencmiss/zinc/fieldimageprocessing.hpp"
-#include "opencmiss/zinc/fieldlogicaloperators.hpp"
-#include "opencmiss/zinc/fieldmatrixoperators.hpp"
-#include "opencmiss/zinc/fieldmeshoperators.hpp"
-#include "opencmiss/zinc/fieldnodesetoperators.hpp"
-#include "opencmiss/zinc/fieldsceneviewerprojection.hpp"
-#include "opencmiss/zinc/fieldtime.hpp"
-#include "opencmiss/zinc/fieldtrigonometry.hpp"
-#include "opencmiss/zinc/fieldvectoroperators.hpp"
-#include "opencmiss/zinc/fieldmodule.hpp"
-#include "opencmiss/zinc/fieldsmoothing.hpp"
-#include "opencmiss/zinc/optimisation.hpp"
+#include "cmlibs/zinc/fieldalias.hpp"
+#include "cmlibs/zinc/fieldapply.hpp"
+#include "cmlibs/zinc/fieldarithmeticoperators.hpp"
+#include "cmlibs/zinc/fieldcache.hpp"
+#include "cmlibs/zinc/fieldcomposite.hpp"
+#include "cmlibs/zinc/fieldconditional.hpp"
+#include "cmlibs/zinc/fieldconstant.hpp"
+#include "cmlibs/zinc/fieldcoordinatetransformation.hpp"
+#include "cmlibs/zinc/fieldderivatives.hpp"
+#include "cmlibs/zinc/fieldfibres.hpp"
+#include "cmlibs/zinc/fieldfiniteelement.hpp"
+#include "cmlibs/zinc/fieldsubobjectgroup.hpp"
+#include "cmlibs/zinc/fieldgroup.hpp"
+#include "cmlibs/zinc/fieldimage.hpp"
+#include "cmlibs/zinc/fieldimageprocessing.hpp"
+#include "cmlibs/zinc/fieldlogicaloperators.hpp"
+#include "cmlibs/zinc/fieldmatrixoperators.hpp"
+#include "cmlibs/zinc/fieldmeshoperators.hpp"
+#include "cmlibs/zinc/fieldnodesetoperators.hpp"
+#include "cmlibs/zinc/fieldsceneviewerprojection.hpp"
+#include "cmlibs/zinc/fieldtime.hpp"
+#include "cmlibs/zinc/fieldtrigonometry.hpp"
+#include "cmlibs/zinc/fieldvectoroperators.hpp"
+#include "cmlibs/zinc/fieldmodule.hpp"
+#include "cmlibs/zinc/fieldsmoothing.hpp"
+#include "cmlibs/zinc/optimisation.hpp"
 
 static void fieldmoduleCallbackToPython(cmzn_fieldmoduleevent_id fieldmoduleevent, void *user_data)
 {
@@ -92,8 +92,8 @@ static void fieldmoduleCallbackToPython(cmzn_fieldmoduleevent_id fieldmoduleeven
     PyObject *my_callback = (PyObject *)user_data;
     /* convert fieldmoduleevent to python object */
     PyObject *obj = NULL;
-    OpenCMISS::Zinc::Fieldmoduleevent *fieldmoduleEvent = new OpenCMISS::Zinc::Fieldmoduleevent(cmzn_fieldmoduleevent_access(fieldmoduleevent));
-    obj = SWIG_NewPointerObj(SWIG_as_voidptr(fieldmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Fieldmoduleevent, SWIG_POINTER_OWN |  0);
+    CMLibs::Zinc::Fieldmoduleevent *fieldmoduleEvent = new CMLibs::Zinc::Fieldmoduleevent(cmzn_fieldmoduleevent_access(fieldmoduleevent));
+    obj = SWIG_NewPointerObj(SWIG_as_voidptr(fieldmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Fieldmoduleevent, SWIG_POINTER_OWN |  0);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);
@@ -105,5 +105,5 @@ static void fieldmoduleCallbackToPython(cmzn_fieldmoduleevent_id fieldmoduleeven
 }
 %}
 
-%include "opencmiss/zinc/fieldmodule.hpp"
+%include "cmlibs/zinc/fieldmodule.hpp"
 

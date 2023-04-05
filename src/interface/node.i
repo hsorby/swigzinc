@@ -3,42 +3,42 @@
  * 
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") node
+%module(package="cmlibs.zinc") node
 
 %include "pyzincstringhandling.i"
 
 %import "field.i"
 
-%extend OpenCMISS::Zinc::Node {
-	bool operator==(const OpenCMISS::Zinc::Node& other) const
+%extend CMLibs::Zinc::Node {
+	bool operator==(const CMLibs::Zinc::Node& other) const
 	{
 		return *($self) == other;
 	}
 }
 
-%extend OpenCMISS::Zinc::Nodeset {
-	bool operator==(const OpenCMISS::Zinc::Nodeset& other) const
+%extend CMLibs::Zinc::Nodeset {
+	bool operator==(const CMLibs::Zinc::Nodeset& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/node.hpp"
-#include "opencmiss/zinc/nodetemplate.hpp"
-#include "opencmiss/zinc/nodeset.hpp"
-#include "opencmiss/zinc/field.hpp"
-#include "opencmiss/zinc/fieldconditional.hpp"
+#include "cmlibs/zinc/node.hpp"
+#include "cmlibs/zinc/nodetemplate.hpp"
+#include "cmlibs/zinc/nodeset.hpp"
+#include "cmlibs/zinc/field.hpp"
+#include "cmlibs/zinc/fieldconditional.hpp"
 %}
 
-%include "opencmiss/zinc/node.hpp"
-%include "opencmiss/zinc/nodetemplate.hpp"
-%include "opencmiss/zinc/nodeset.hpp"
+%include "cmlibs/zinc/node.hpp"
+%include "cmlibs/zinc/nodetemplate.hpp"
+%include "cmlibs/zinc/nodeset.hpp"
 

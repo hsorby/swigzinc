@@ -3,7 +3,7 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -25,19 +25,19 @@ free($1);
 %newobject *::getLabelText(int labelNumber);
 %newobject *::getSolutionReport();
 
-%newobject OpenCMISS::Zinc::Graphics::RenderPolygonModeEnumToString;
-%newobject OpenCMISS::Zinc::Graphics::SelectModeEnumToString;
-%newobject OpenCMISS::Zinc::Graphics::TypeEnumToString;
-%newobject OpenCMISS::Zinc::Graphics::BoundaryModeEnumToString;
-%newobject OpenCMISS::Zinc::GraphicsStreamlines::ColourDataTypeEnumToString;
-%newobject OpenCMISS::Zinc::GraphicsStreamlines::TrackDirectionEnumToString;
-%newobject OpenCMISS::Zinc::Graphicslineattributes::ShapeTypeEnumToString;
-%newobject OpenCMISS::Zinc::Graphicspointattributes::getLabelText;
+%newobject CMLibs::Zinc::Graphics::RenderPolygonModeEnumToString;
+%newobject CMLibs::Zinc::Graphics::SelectModeEnumToString;
+%newobject CMLibs::Zinc::Graphics::TypeEnumToString;
+%newobject CMLibs::Zinc::Graphics::BoundaryModeEnumToString;
+%newobject CMLibs::Zinc::GraphicsStreamlines::ColourDataTypeEnumToString;
+%newobject CMLibs::Zinc::GraphicsStreamlines::TrackDirectionEnumToString;
+%newobject CMLibs::Zinc::Graphicslineattributes::ShapeTypeEnumToString;
+%newobject CMLibs::Zinc::Graphicspointattributes::getLabelText;
 
-%newobject OpenCMISS::Zinc::ScenecoordinatesystemEnumToString;
+%newobject CMLibs::Zinc::ScenecoordinatesystemEnumToString;
 
-%newobject OpenCMISS::Zinc::Logger::getMessageTextAtIndex;
-%newobject OpenCMISS::Zinc::Loggerevent::getMessageText;
+%newobject CMLibs::Zinc::Logger::getMessageTextAtIndex;
+%newobject CMLibs::Zinc::Loggerevent::getMessageText;
 //%typemap(ret) stringheap_t %{
 //  cmzn_deallocate($1);
 //%}
