@@ -69,7 +69,6 @@
 #include "cmlibs/zinc/fieldderivatives.hpp"
 #include "cmlibs/zinc/fieldfibres.hpp"
 #include "cmlibs/zinc/fieldfiniteelement.hpp"
-#include "cmlibs/zinc/fieldsubobjectgroup.hpp"
 #include "cmlibs/zinc/fieldgroup.hpp"
 #include "cmlibs/zinc/fieldimage.hpp"
 #include "cmlibs/zinc/fieldimageprocessing.hpp"
