@@ -31,11 +31,10 @@
 }
 
 %{
+#include "cmlibs/zinc/fieldgroup.hpp"
 #include "cmlibs/zinc/node.hpp"
 #include "cmlibs/zinc/nodetemplate.hpp"
 #include "cmlibs/zinc/nodeset.hpp"
-#include "cmlibs/zinc/field.hpp"
-#include "cmlibs/zinc/fieldconditional.hpp"
 %}
 
 %include "cmlibs/zinc/node.hpp"
