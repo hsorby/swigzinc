@@ -34,7 +34,7 @@
 }
 
 %{
-#include "cmlibs/zinc/fieldimage.hpp"
+#include "cmlibs/zinc/fieldgroup.hpp"
 #include "cmlibs/zinc/element.hpp"
 #include "cmlibs/zinc/elementbasis.hpp"
 #include "cmlibs/zinc/elementfieldtemplate.hpp"
