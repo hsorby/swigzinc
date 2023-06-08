@@ -35,7 +35,6 @@
 
 %{
 #include "cmlibs/zinc/core.h"
-#include "cmlibs/zinc/fieldalias.hpp"
 #include "cmlibs/zinc/fieldapply.hpp"
 #include "cmlibs/zinc/fieldarithmeticoperators.hpp"
 #include "cmlibs/zinc/fieldcomposite.hpp"
@@ -86,4 +85,3 @@
 %include "cmlibs/zinc/fieldtime.hpp"
 %include "cmlibs/zinc/fieldtrigonometry.hpp"
 %include "cmlibs/zinc/fieldarithmeticoperators.hpp"
-%include "cmlibs/zinc/fieldalias.hpp"

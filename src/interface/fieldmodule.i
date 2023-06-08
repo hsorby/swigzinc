@@ -58,7 +58,6 @@
 %import "fieldsmoothing.i"
 
 %{
-#include "cmlibs/zinc/fieldalias.hpp"
 #include "cmlibs/zinc/fieldapply.hpp"
 #include "cmlibs/zinc/fieldarithmeticoperators.hpp"
 #include "cmlibs/zinc/fieldcache.hpp"
