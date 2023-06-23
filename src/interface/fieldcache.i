@@ -4,14 +4,14 @@
  * Swig interface file for wrapping api functions in api/fieldcache.hpp
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") fieldcache
+%module(package="cmlibs.zinc") fieldcache
 %include "doublevaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *stringValue) = (const char *name);
@@ -21,9 +21,9 @@
 %import "node.i"
 
 %{
-#include "opencmiss/zinc/fieldcache.hpp"
-#include "opencmiss/zinc/fieldrange.hpp"
+#include "cmlibs/zinc/fieldcache.hpp"
+#include "cmlibs/zinc/fieldrange.hpp"
 %}
 
-%include "opencmiss/zinc/fieldcache.hpp"
+%include "cmlibs/zinc/fieldcache.hpp"
 

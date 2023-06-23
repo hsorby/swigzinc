@@ -3,16 +3,16 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") timenotifier
+%module(package="cmlibs.zinc") timenotifier
 
-%extend OpenCMISS::Zinc::Timenotifier {
+%extend CMLibs::Zinc::Timenotifier {
 
     int setCallback(PyObject *callbackObject)
     {
@@ -36,12 +36,12 @@
     }
 }
 
-%ignore OpenCMISS::Zinc::Timenotifier::clearCallback();
+%ignore CMLibs::Zinc::Timenotifier::clearCallback();
 
 %import "timekeeper.i"
 
 %{
-#include "opencmiss/zinc/timenotifier.hpp"
+#include "cmlibs/zinc/timenotifier.hpp"
 
 static void callbackToPython(cmzn_timenotifierevent_id timenotifier_event, void *user_data)
 {
@@ -50,8 +50,8 @@ static void callbackToPython(cmzn_timenotifierevent_id timenotifier_event, void 
     PyObject *my_callback = (PyObject *)user_data;
     /* convert timenotifier to python object */
     /* Time to call the callback */
-    OpenCMISS::Zinc::Timenotifierevent *timenotifierevent = new OpenCMISS::Zinc::Timenotifierevent(cmzn_timenotifierevent_access(timenotifier_event));
-    PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(timenotifierevent), SWIGTYPE_p_OpenCMISS__Zinc__Timenotifierevent, 1);
+    CMLibs::Zinc::Timenotifierevent *timenotifierevent = new CMLibs::Zinc::Timenotifierevent(cmzn_timenotifierevent_access(timenotifier_event));
+    PyObject *obj = SWIG_NewPointerObj(SWIG_as_voidptr(timenotifierevent), SWIGTYPE_p_CMLibs__Zinc__Timenotifierevent, 1);
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);
     Py_DECREF(arglist);
@@ -60,5 +60,5 @@ static void callbackToPython(cmzn_timenotifierevent_id timenotifier_event, void 
 }
 %}
 
-%include "opencmiss/zinc/timenotifier.hpp"
+%include "cmlibs/zinc/timenotifier.hpp"
 

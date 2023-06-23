@@ -23,7 +23,7 @@ endforeach()
 # Also add a test to see if simple importing of the libraries works
 set(TESTNAME import)
 add_test(NAME Python_Bindings_${TESTNAME}
-    COMMAND ${Python_EXECUTABLE} -c "from opencmiss.zinc.context import Context"
+    COMMAND ${Python_EXECUTABLE} -c "from cmlibs.zinc.context import Context"
 )
 list(APPEND PYTHONTESTS Python_Bindings_${TESTNAME})
 
@@ -34,7 +34,7 @@ else()
     set(PYTHONPATH_SEP ":")
 endif()
 
-# Set the correct python path to have it find the opencmiss package
+# Set the correct python path to have it find the cmlibs package
 file(TO_NATIVE_PATH "${PROJECT_BINARY_DIR}/src/python${CFG_DIR}" NATIVE_PYTHON_BINDINGS_DIR)
 # This is just needed by imageprocessing_tests and field_tests (they need a pythonpath at the python/tests dir)
 file(TO_NATIVE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" NATIVE_TEST_BASE_DIR)

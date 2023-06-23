@@ -16,7 +16,7 @@ import unittest
 
 try:
     from field_tests import applytests, compositetests, fieldmodulenotifiertests, fieldrangetests, \
-        sceneviewerprojectionfieldtests, vectoroperatortests
+        grouptests, sceneviewerprojectionfieldtests, vectoroperatortests
 except ImportError:
     import applytests, compositetests, fieldrangetests, fieldmodulenotifiertests, sceneviewerprojectionfieldtests, \
         vectoroperatortests
@@ -31,6 +31,7 @@ def suite():
     tests.addTests(compositetests.suite())
     tests.addTests(fieldmodulenotifiertests.suite())
     tests.addTests(fieldrangetests.suite())
+    tests.addTests(grouptests.suite())
     
     return tests
 

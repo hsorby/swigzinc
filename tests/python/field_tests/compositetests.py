@@ -13,7 +13,7 @@ Created on May 23, 2013
 '''
 import unittest
 
-from opencmiss.zinc.context import Context
+from cmlibs.zinc.context import Context
 
 class CompositeTestCase(unittest.TestCase):
 

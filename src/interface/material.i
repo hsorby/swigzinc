@@ -4,14 +4,14 @@
  * Swig interface file for Zinc material.
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") material
+%module(package="cmlibs.zinc") material
 
 %include "doublevaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
@@ -19,7 +19,7 @@
 %import "context.i"
 %import "field.i"
 
-%extend OpenCMISS::Zinc::Materialmodulenotifier {
+%extend CMLibs::Zinc::Materialmodulenotifier {
 	int setCallback(PyObject *callbackObject)
 	{
 		PyObject *my_callback = NULL;
@@ -41,18 +41,18 @@
 	}
 }
 
-%ignore OpenCMISS::Zinc::Materialmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Materialmodulenotifier::clearCallback();
 
-%extend OpenCMISS::Zinc::Material {
-	bool operator==(const OpenCMISS::Zinc::Material& other) const
+%extend CMLibs::Zinc::Material {
+	bool operator==(const CMLibs::Zinc::Material& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/material.hpp"
-#include "opencmiss/zinc/fieldconditional.hpp"
+#include "cmlibs/zinc/material.hpp"
+#include "cmlibs/zinc/fieldconditional.hpp"
 
 static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialmoduleevent, 
 	void *user_data)
@@ -62,9 +62,9 @@ static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialm
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert materialmoduleevent to python object */
 	PyObject *obj = NULL;
-	OpenCMISS::Zinc::Materialmoduleevent *materialmoduleEvent = 
-		new OpenCMISS::Zinc::Materialmoduleevent(cmzn_materialmoduleevent_access(materialmoduleevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(materialmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Materialmoduleevent, 1);
+	CMLibs::Zinc::Materialmoduleevent *materialmoduleEvent = 
+		new CMLibs::Zinc::Materialmoduleevent(cmzn_materialmoduleevent_access(materialmoduleevent));
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(materialmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Materialmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);
@@ -76,4 +76,4 @@ static void materialmoduleCallbackToPython(cmzn_materialmoduleevent_id materialm
 }
 %}
 
-%include "opencmiss/zinc/material.hpp"
+%include "cmlibs/zinc/material.hpp"

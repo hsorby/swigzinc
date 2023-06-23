@@ -3,19 +3,19 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") glyph
+%module(package="cmlibs.zinc") glyph
 %include "pyzincstringhandling.i"
 %typemap(in) (const char *label) = (const char *name);
 %typemap(in) (const char *numberFormat) = (const char *name);
 
-%extend OpenCMISS::Zinc::Glyphmodulenotifier {
+%extend CMLibs::Zinc::Glyphmodulenotifier {
 	int setCallback(PyObject *callbackObject)
 	{
 		PyObject *my_callback = NULL;
@@ -37,21 +37,21 @@
 	}
 }
 
-%ignore OpenCMISS::Zinc::Glyphmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Glyphmodulenotifier::clearCallback();
 
 %import "material.i"
 %import "spectrum.i"
 
-%extend OpenCMISS::Zinc::Glyph {
-	bool operator==(const OpenCMISS::Zinc::Glyph& other) const
+%extend CMLibs::Zinc::Glyph {
+	bool operator==(const CMLibs::Zinc::Glyph& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/glyph.hpp"
-#include "opencmiss/zinc/graphics.hpp"
+#include "cmlibs/zinc/glyph.hpp"
+#include "cmlibs/zinc/graphics.hpp"
 
 static void glyphmoduleCallbackToPython(cmzn_glyphmoduleevent_id glyphmoduleevent, 
 	void *user_data)
@@ -61,9 +61,9 @@ static void glyphmoduleCallbackToPython(cmzn_glyphmoduleevent_id glyphmoduleeven
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert glyphmoduleevent to python object */
 	PyObject *obj = NULL;
-	OpenCMISS::Zinc::Glyphmoduleevent *glyphmoduleEvent = 
-		new OpenCMISS::Zinc::Glyphmoduleevent(cmzn_glyphmoduleevent_access(glyphmoduleevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(glyphmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Glyphmoduleevent, 1);
+	CMLibs::Zinc::Glyphmoduleevent *glyphmoduleEvent = 
+		new CMLibs::Zinc::Glyphmoduleevent(cmzn_glyphmoduleevent_access(glyphmoduleevent));
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(glyphmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Glyphmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);
@@ -75,4 +75,4 @@ static void glyphmoduleCallbackToPython(cmzn_glyphmoduleevent_id glyphmoduleeven
 }
 %}
 
-%include "opencmiss/zinc/glyph.hpp"
+%include "cmlibs/zinc/glyph.hpp"

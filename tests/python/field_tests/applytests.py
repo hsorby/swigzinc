@@ -13,8 +13,8 @@ Created on Sep 29, 2021
 '''
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc import status
+from cmlibs.zinc.context import Context
+from cmlibs.zinc import status
 
 
 class ApplyFieldTestCase(unittest.TestCase):

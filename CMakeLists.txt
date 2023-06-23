@@ -22,7 +22,7 @@ if(POLICY CMP0094)
 endif()
 
 # This is the project name and shows up in IDEs
-project(SWIGZinc VERSION 3.2.0 LANGUAGES C CXX)
+project(SWIGZinc VERSION 4.0.0 LANGUAGES C CXX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 

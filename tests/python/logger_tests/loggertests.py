@@ -8,9 +8,9 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import sys
 import unittest
 
-from opencmiss.zinc.context import Context
-from opencmiss.zinc.logger import Logger, Loggernotifier, Loggerevent
-#from opencmiss.zinc.region import Region
+from cmlibs.zinc.context import Context
+from cmlibs.zinc.logger import Logger, Loggernotifier, Loggerevent
+#from cmlibs.zinc.region import Region
 
 def loggerCallback(event):
     global lastloggerevent 

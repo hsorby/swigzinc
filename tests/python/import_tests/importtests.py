@@ -11,82 +11,82 @@ import unittest
 class ImportTestCase(unittest.TestCase):
 
     def testImportContext(self):
-        from opencmiss.zinc import context
+        from cmlibs.zinc import context
 
     def testImportDifferentialoperator(self):
-        from opencmiss.zinc import differentialoperator
+        from cmlibs.zinc import differentialoperator
     
     def testImportElement(self):
-        from opencmiss.zinc import element
+        from cmlibs.zinc import element
     
     def testImportField(self):
-        from opencmiss.zinc import field
+        from cmlibs.zinc import field
     
     def testImportFieldcache(self):
-        from opencmiss.zinc import fieldcache
+        from cmlibs.zinc import fieldcache
     
     def testImportFieldmodule(self):
-        from opencmiss.zinc import fieldmodule
+        from cmlibs.zinc import fieldmodule
     
     def testImportGraphics(self):
-        from opencmiss.zinc import graphics
+        from cmlibs.zinc import graphics
         
     def testImportLight(self):
-        from opencmiss.zinc import light
+        from cmlibs.zinc import light
         
     def testImportLogger(self):
-        from opencmiss.zinc import logger
+        from cmlibs.zinc import logger
     
     def testImportMaterial(self):
-        from opencmiss.zinc import material
+        from cmlibs.zinc import material
     
     def testImportNode(self):
-        from opencmiss.zinc import node
+        from cmlibs.zinc import node
     
     def testImportOptimisation(self):
-        from opencmiss.zinc import optimisation
+        from cmlibs.zinc import optimisation
     
     def testImportRegion(self):
-        from opencmiss.zinc import region
+        from cmlibs.zinc import region
     
     def testImportScene(self):
-        from opencmiss.zinc import scene
+        from cmlibs.zinc import scene
     
     def testImportScenecoordinatesystem(self):
-        from opencmiss.zinc import scenecoordinatesystem
+        from cmlibs.zinc import scenecoordinatesystem
         
     def testImportScenefilter(self):
-        from opencmiss.zinc import scenefilter
+        from cmlibs.zinc import scenefilter
     
     def testImportSceneviewer(self):
-        from opencmiss.zinc import sceneviewer
+        from cmlibs.zinc import sceneviewer
     
     def testImportSceneviewerinput(self):
-        from opencmiss.zinc import sceneviewerinput
+        from cmlibs.zinc import sceneviewerinput
     
     def testImportSelection(self):
-        from opencmiss.zinc import selection
+        from cmlibs.zinc import selection
     
     def testImportSpectrum(self):
-        from opencmiss.zinc import spectrum
+        from cmlibs.zinc import spectrum
     
     def testImportStatus(self):
-        from opencmiss.zinc import status
+        from cmlibs.zinc import status
     
     def testImportStream(self):
-        from opencmiss.zinc import stream
+        from cmlibs.zinc import stream
     
     def testImportTessellation(self):
-        from opencmiss.zinc import tessellation
+        from cmlibs.zinc import tessellation
     
     def testImportTimekeeper(self):
-        from opencmiss.zinc import timekeeper
+        from cmlibs.zinc import timekeeper
     
     def testImportTimenotifier(self):
-        from opencmiss.zinc import timenotifier
+        from cmlibs.zinc import timenotifier
     
     def testImportTimesequence(self):
-        from opencmiss.zinc import timesequence
+        from cmlibs.zinc import timesequence
     
 
 

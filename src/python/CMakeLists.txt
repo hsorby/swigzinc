@@ -65,8 +65,8 @@ set(INTERFACE_SRCS
 set_source_files_properties(${INTERFACE_SRCS} PROPERTIES CPLUSPLUS ON USE_TARGET_INCLUDE_DIRECTORIES TRUE)
 
 set(BASE_PYTHON_PACKAGE_DIR "${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}")
-set(OPENCMISS_PYTHON_PACKAGE_DIR "${BASE_PYTHON_PACKAGE_DIR}/opencmiss")
-set(ZINC_PYTHON_PACKAGE_DIR "${OPENCMISS_PYTHON_PACKAGE_DIR}/zinc")
+set(CMLIBS_PYTHON_PACKAGE_DIR "${BASE_PYTHON_PACKAGE_DIR}/cmlibs")
+set(ZINC_PYTHON_PACKAGE_DIR "${CMLIBS_PYTHON_PACKAGE_DIR}/zinc")
 set(CMAKE_SWIG_OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/modules_python_files")
 
 set(SWIG_MODULE_TARGETS )
@@ -130,8 +130,8 @@ foreach(SWIG_INTERFACE ${INTERFACE_SRCS})
 endforeach()
 
 add_custom_target(collect_python_binding_files ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SWIG_OUTDIR} ${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}/opencmiss/zinc
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zinc> ${_GENERATOR_EXPRESSION_ZINC_SONAME} ${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}/opencmiss/zinc
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SWIG_OUTDIR} ${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}/cmlibs/zinc
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zinc> ${_GENERATOR_EXPRESSION_ZINC_SONAME} ${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}/cmlibs/zinc
 )
 add_dependencies(collect_python_binding_files ${SWIG_MODULE_TARGETS})
 
@@ -151,7 +151,7 @@ endif()
 
 # Get a pretty system name.
 #GET_SYSTEM_NAME(SYSTEM_NAME)
-set(PYPI_PACKAGE_NAME opencmiss.zinc)
+set(PYPI_PACKAGE_NAME cmlibs.zinc)
 set(PYPI_SOURCE_TARGZ_VERSION "${Zinc_VERSION}-${PYZINC_ARCHITECTURE}-${CMAKE_SYSTEM_NAME}-Python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
 
 ################################################################
@@ -185,9 +185,9 @@ endforeach()
 file(GENERATE OUTPUT "${BASE_PYTHON_PACKAGE_DIR}/setup.py"
     INPUT "${SETUP_PRE_GEN_PY_FILE}"
 )
-# opencmiss __init__.py does not need to be configured (yet)
-file(GENERATE OUTPUT "${OPENCMISS_PYTHON_PACKAGE_DIR}/__init__.py"
-    INPUT "${CMAKE_CURRENT_SOURCE_DIR}/opencmiss__init__.py"
+# cmlibs __init__.py does not need to be configured (yet)
+file(GENERATE OUTPUT "${CMLIBS_PYTHON_PACKAGE_DIR}/__init__.py"
+    INPUT "${CMAKE_CURRENT_SOURCE_DIR}/cmlibs__init__.py"
 )
 file(GENERATE OUTPUT "${ZINC_PYTHON_PACKAGE_DIR}/__init__.py"
     INPUT "${CMAKE_CURRENT_BINARY_DIR}/zinc__init__.py"
@@ -202,7 +202,7 @@ endforeach()
 # Create tarball
 set(PYPI_SOURCE_TARGZ "${CMAKE_CURRENT_BINARY_DIR}${CFG_DIR}/${PYPI_PACKAGE_NAME}-${PYPI_SOURCE_TARGZ_VERSION}.tar.gz")
 add_custom_target(python_bindings_tarball
-    COMMAND ${CMAKE_COMMAND} -E tar czf ${PYPI_SOURCE_TARGZ} -- $<CONFIG>/opencmiss setup.py ${ADDITIONAL_PACKAGE_FILES}
+    COMMAND ${CMAKE_COMMAND} -E tar czf ${PYPI_SOURCE_TARGZ} -- $<CONFIG>/cmlibs setup.py ${ADDITIONAL_PACKAGE_FILES}
 )
 
 include(${CMAKE_CURRENT_LIST_DIR}/InstallConfig.cmake)

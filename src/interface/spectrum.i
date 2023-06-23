@@ -3,16 +3,16 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") spectrum
+%module(package="cmlibs.zinc") spectrum
 
-%extend OpenCMISS::Zinc::Spectrummodulenotifier {
+%extend CMLibs::Zinc::Spectrummodulenotifier {
 
     int setCallback(PyObject *callbackObject)
     {
@@ -35,20 +35,20 @@
     }
 }
 
-%ignore OpenCMISS::Zinc::Spectrummodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Spectrummodulenotifier::clearCallback();
 
 %include "pyzincstringhandling.i"
 
-%extend OpenCMISS::Zinc::Spectrum {
-	bool operator==(const OpenCMISS::Zinc::Spectrum& other) const
+%extend CMLibs::Zinc::Spectrum {
+	bool operator==(const CMLibs::Zinc::Spectrum& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/scene.hpp"
-#include "opencmiss/zinc/spectrum.hpp"
+#include "cmlibs/zinc/scene.hpp"
+#include "cmlibs/zinc/spectrum.hpp"
 
 static void spectrummoduleCallbackToPython(cmzn_spectrummoduleevent_id spectrummoduleevent, void *user_data)
 {
@@ -57,8 +57,8 @@ static void spectrummoduleCallbackToPython(cmzn_spectrummoduleevent_id spectrumm
     PyObject *my_callback = (PyObject *)user_data;
     /* convert spectrummoduleevent to python object */
     PyObject *obj = NULL;
-    OpenCMISS::Zinc::Spectrummoduleevent *spectrummoduleEvent = new OpenCMISS::Zinc::Spectrummoduleevent(cmzn_spectrummoduleevent_access(spectrummoduleevent));
-    obj = SWIG_NewPointerObj(SWIG_as_voidptr(spectrummoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Spectrummoduleevent, 1);
+    CMLibs::Zinc::Spectrummoduleevent *spectrummoduleEvent = new CMLibs::Zinc::Spectrummoduleevent(cmzn_spectrummoduleevent_access(spectrummoduleevent));
+    obj = SWIG_NewPointerObj(SWIG_as_voidptr(spectrummoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Spectrummoduleevent, 1);
     /* Time to call the callback */
     arglist = Py_BuildValue("(N)", obj);
     result = PyObject_CallObject(my_callback, arglist);
@@ -70,4 +70,4 @@ static void spectrummoduleCallbackToPython(cmzn_spectrummoduleevent_id spectrumm
 }
 %}
 
-%include "opencmiss/zinc/spectrum.hpp"
+%include "cmlibs/zinc/spectrum.hpp"

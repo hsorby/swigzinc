@@ -3,16 +3,16 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") tessellation
+%module(package="cmlibs.zinc") tessellation
 
-%extend OpenCMISS::Zinc::Tessellationmodulenotifier {
+%extend CMLibs::Zinc::Tessellationmodulenotifier {
 
 	int setCallback(PyObject *callbackObject)
 	{
@@ -35,20 +35,20 @@
 	}
 }
 
-%ignore OpenCMISS::Zinc::Tessellationmodulenotifier::clearCallback();
+%ignore CMLibs::Zinc::Tessellationmodulenotifier::clearCallback();
 
 %include "integervaluesarraytypemap.i"
 %include "pyzincstringhandling.i"
 
-%extend OpenCMISS::Zinc::Tessellation {
-	bool operator==(const OpenCMISS::Zinc::Tessellation& other) const
+%extend CMLibs::Zinc::Tessellation {
+	bool operator==(const CMLibs::Zinc::Tessellation& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/tessellation.hpp"
+#include "cmlibs/zinc/tessellation.hpp"
 
 static void tessellationmoduleCallbackToPython(cmzn_tessellationmoduleevent_id tessellationmoduleevent, 
 	void *user_data)
@@ -58,9 +58,9 @@ static void tessellationmoduleCallbackToPython(cmzn_tessellationmoduleevent_id t
 	PyObject *my_callback = (PyObject *)user_data;
 	/* convert tessellationmoduleevent to python object */
 	PyObject *obj = NULL;
-	OpenCMISS::Zinc::Tessellationmoduleevent *tessellationmoduleEvent = 
-		new OpenCMISS::Zinc::Tessellationmoduleevent(cmzn_tessellationmoduleevent_access(tessellationmoduleevent));
-	obj = SWIG_NewPointerObj(SWIG_as_voidptr(tessellationmoduleEvent), SWIGTYPE_p_OpenCMISS__Zinc__Tessellationmoduleevent, 1);
+	CMLibs::Zinc::Tessellationmoduleevent *tessellationmoduleEvent = 
+		new CMLibs::Zinc::Tessellationmoduleevent(cmzn_tessellationmoduleevent_access(tessellationmoduleevent));
+	obj = SWIG_NewPointerObj(SWIG_as_voidptr(tessellationmoduleEvent), SWIGTYPE_p_CMLibs__Zinc__Tessellationmoduleevent, 1);
 	/* Time to call the callback */
 	arglist = Py_BuildValue("(N)", obj);
 	result = PyObject_CallObject(my_callback, arglist);
@@ -72,4 +72,4 @@ static void tessellationmoduleCallbackToPython(cmzn_tessellationmoduleevent_id t
 }
 %}
 
-%include "opencmiss/zinc/tessellation.hpp"
+%include "cmlibs/zinc/tessellation.hpp"

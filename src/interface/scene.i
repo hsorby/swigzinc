@@ -3,14 +3,14 @@
  *
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") scene
+%module(package="cmlibs.zinc") scene
 %include "pyzincstringhandling.i"
 
 %import "graphics.i"
@@ -22,21 +22,21 @@
 %import "spectrum.i"
 %import "streamscene.i"
 
-%extend OpenCMISS::Zinc::Scene {
-	bool operator==(const OpenCMISS::Zinc::Scene& other) const
+%extend CMLibs::Zinc::Scene {
+	bool operator==(const CMLibs::Zinc::Scene& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/scene.hpp"
-#include "opencmiss/zinc/scenepicker.hpp"
-#include "opencmiss/zinc/shader.hpp"
-#include "opencmiss/zinc/spectrum.hpp"
-#include "opencmiss/zinc/streamscene.hpp"
-#include "opencmiss/zinc/sceneviewer.hpp"
+#include "cmlibs/zinc/scene.hpp"
+#include "cmlibs/zinc/scenepicker.hpp"
+#include "cmlibs/zinc/shader.hpp"
+#include "cmlibs/zinc/spectrum.hpp"
+#include "cmlibs/zinc/streamscene.hpp"
+#include "cmlibs/zinc/sceneviewer.hpp"
 %}
 
-%include "opencmiss/zinc/scene.hpp"
+%include "cmlibs/zinc/scene.hpp"
 

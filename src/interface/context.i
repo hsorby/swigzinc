@@ -4,14 +4,14 @@
  * Swig interface file for zinc context.
  */
 /*
- * OpenCMISS-Zinc Library
+ * Zinc Library
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-%module(package="opencmiss.zinc") context
+%module(package="cmlibs.zinc") context
 
 %include "pyzincstringhandling.i"
 
@@ -31,28 +31,28 @@
 %import "timekeeper.i"
 %include "integervaluesarraytypemap.i"
 
-%extend OpenCMISS::Zinc::Context {
-	bool operator==(const OpenCMISS::Zinc::Context& other) const
+%extend CMLibs::Zinc::Context {
+	bool operator==(const CMLibs::Zinc::Context& other) const
 	{
 		return *($self) == other;
 	}
 }
 
 %{
-#include "opencmiss/zinc/context.hpp"
-#include "opencmiss/zinc/font.hpp"
-#include "opencmiss/zinc/light.hpp"
-#include "opencmiss/zinc/logger.hpp"
-#include "opencmiss/zinc/glyph.hpp"
-#include "opencmiss/zinc/material.hpp"
-#include "opencmiss/zinc/region.hpp"
-#include "opencmiss/zinc/scenefilter.hpp"
-#include "opencmiss/zinc/sceneviewer.hpp"
-#include "opencmiss/zinc/shader.hpp"
-#include "opencmiss/zinc/spectrum.hpp"
-#include "opencmiss/zinc/tessellation.hpp"
-#include "opencmiss/zinc/timekeeper.hpp"
+#include "cmlibs/zinc/context.hpp"
+#include "cmlibs/zinc/font.hpp"
+#include "cmlibs/zinc/light.hpp"
+#include "cmlibs/zinc/logger.hpp"
+#include "cmlibs/zinc/glyph.hpp"
+#include "cmlibs/zinc/material.hpp"
+#include "cmlibs/zinc/region.hpp"
+#include "cmlibs/zinc/scenefilter.hpp"
+#include "cmlibs/zinc/sceneviewer.hpp"
+#include "cmlibs/zinc/shader.hpp"
+#include "cmlibs/zinc/spectrum.hpp"
+#include "cmlibs/zinc/tessellation.hpp"
+#include "cmlibs/zinc/timekeeper.hpp"
 %}
 
-%include "opencmiss/zinc/context.hpp"
+%include "cmlibs/zinc/context.hpp"
 
