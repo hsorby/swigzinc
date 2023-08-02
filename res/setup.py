@@ -44,6 +44,6 @@ setup(
     cmake_source_dir="./",
     cmake_install_target="install-python-bindings",
     cmake_args=cmake_args,
-    cmake_install_dir="cmlibs.zinc",
+    cmake_install_dir="./",
     exclude_package_data={"": ["bin/*", "cmake/*", "include/*", "lib/*"]},
 )
