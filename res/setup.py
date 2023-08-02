@@ -42,7 +42,8 @@ setup(
     long_description_content_type='text/x-rst',
     include_package_data=True,
     cmake_source_dir="./",
-    cmake_install_target="PythonBindings",
+    cmake_install_target="install-python-bindings",
     cmake_args=cmake_args,
+    cmake_install_dir="cmlibs.zinc",
     exclude_package_data={"": ["bin/*", "cmake/*", "include/*", "lib/*"]},
 )
