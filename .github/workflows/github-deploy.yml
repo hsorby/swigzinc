@@ -31,6 +31,8 @@ jobs:
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.14.1
+        env:
+          CIBW_BUILD: cp38-*
         # valid inputs are ['package-dir', 'output-dir', 'config-file', 'only']
         with:
           package-dir: res
