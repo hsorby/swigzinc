@@ -16,9 +16,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
+        py: [3.10]
+        include:
+          - name: 'Linux'
+            os: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup for cibuildwheel
+        id: setup
+        run: |
+          echo "Setup commands for cibuildwheel."
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.14.1
