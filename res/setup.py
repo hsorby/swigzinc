@@ -20,7 +20,7 @@ import platform
 
 from skbuild import setup
 
-cmake_args = ["-DUNIT_TESTS=OFF", "-DCOVERAGE=OFF", "-DMEMCHECK=OFF", "-DLLVM_COVERAGE=OFF", "-DCLANG_TIDY=OFF"]
+cmake_args = [] # ["-DUNIT_TESTS=OFF", "-DCOVERAGE=OFF", "-DMEMCHECK=OFF", "-DLLVM_COVERAGE=OFF", "-DCLANG_TIDY=OFF"]
 
 if platform.system() == "Windows":
     cmake_args.append("-DLibXml2_DIR=C:/Program Files (x86)/libxml2/libxml2-2.9.10/CMake/")
@@ -30,7 +30,7 @@ doclines = __doc__.split("\n")
 tag = os.environ.get("ZINC_VERSION_TAG", "v0.0.0")
 
 setup(
-    name="cmlibs.cibuildwheel",
+    name="cmlibs.zinc",
     version=tag[1:],
     description=doclines[0],
     author="Zinc contributors",
@@ -41,6 +41,7 @@ setup(
     long_description=open('README.rst').read(),
     long_description_content_type='text/x-rst',
     include_package_data=True,
+    cmake_source_dir="./",
     cmake_install_target="PythonBindings",
     cmake_args=cmake_args,
     exclude_package_data={"": ["bin/*", "cmake/*", "include/*", "lib/*"]},
