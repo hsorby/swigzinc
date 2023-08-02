@@ -1,0 +1,29 @@
+name: Build and upload to PyPI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+
+jobs:
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.14.1
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
+
