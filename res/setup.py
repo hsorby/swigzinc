@@ -41,7 +41,7 @@ setup(
     long_description=open('README.rst').read(),
     long_description_content_type='text/x-rst',
     include_package_data=True,
-#    cmake_install_target="install-wheel",
+    cmake_install_target="PythonBindings",
     cmake_args=cmake_args,
     exclude_package_data={"": ["bin/*", "cmake/*", "include/*", "lib/*"]},
 )
