@@ -1,6 +1,6 @@
 # Set installation destination paths.
 if (SKBUILD)
-    set(PYTHON_DESTINATION_PREFIX cmlibs.zinc)
+    set(PYTHON_DESTINATION_PREFIX "./")
 else()
     set(PYTHON_DESTINATION_PREFIX lib/python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}${CFG_DIR}/cmlibs.zinc)
 endif()
