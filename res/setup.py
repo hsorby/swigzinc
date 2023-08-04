@@ -18,9 +18,14 @@ Topic :: Software Development :: Libraries :: Python Modules
 import os
 import platform
 
+from pathlib import Path
 from skbuild import setup
 
-cmake_args = [] # ["-DUNIT_TESTS=OFF", "-DCOVERAGE=OFF", "-DMEMCHECK=OFF", "-DLLVM_COVERAGE=OFF", "-DCLANG_TIDY=OFF"]
+
+here = Path(os.path.dirname(__file__))
+
+
+cmake_args = [f"-DZinc_DIR={here.parent}/build-nonpython/ZincLibrary/src/build_zinc-build"] # ["-DUNIT_TESTS=OFF", "-DCOVERAGE=OFF", "-DMEMCHECK=OFF", "-DLLVM_COVERAGE=OFF", "-DCLANG_TIDY=OFF"]
 
 if platform.system() == "Windows":
     cmake_args.append("-DLibXml2_DIR=C:/Program Files (x86)/libxml2/libxml2-2.9.10/CMake/")
@@ -37,11 +42,14 @@ setup(
     url="https://cmlibs.org",
     license="Apache 2.0",
     packages=["cmlibs", "cmlibs.zinc"],
+    package_data={
+        'cmlibs.zinc': ['libzinc*.dylib', 'libzinc*.so', '_*.so'],
+    },
     classifiers=classifiers.split("\n"),
     long_description=open('README.rst').read(),
     long_description_content_type='text/x-rst',
     include_package_data=True,
-    cmake_source_dir="./",
+    cmake_source_dir="../",
     cmake_install_target="install-python-bindings",
     cmake_args=cmake_args,
     cmake_install_dir="./",

@@ -29,17 +29,17 @@ ExternalProject_Add(build_zinc
   INSTALL_COMMAND ""
 )
 
-ExternalProject_Add(build_swigzinc
-  DEPENDS build_zinc
-  PREFIX SWIGZincPackage
-  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/.."
-  CMAKE_ARGS -DZinc_DIR=${CMAKE_CURRENT_BINARY_DIR}/ZincLibrary/src/build_zinc-build -DBUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_LIST_DIR} -DSKBUILD=TRUE
-  INSTALL_COMMAND ""
-)
+#ExternalProject_Add(build_swigzinc
+#  DEPENDS build_zinc
+#  PREFIX SWIGZincPackage
+#  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/.."
+#  CMAKE_ARGS -DZinc_DIR=${CMAKE_CURRENT_BINARY_DIR}/ZincLibrary/src/build_zinc-build -DBUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_LIST_DIR} -DSKBUILD=TRUE
+#  INSTALL_COMMAND ""
+#)
 
-add_custom_target(install-python-bindings
-    COMMAND ${CMAKE_COMMAND} --build . --target install-python-bindings
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/SWIGZincPackage/src/build_swigzinc-build
-    DEPENDS build_swigzinc
-)
+#add_custom_target(install-python-bindings
+#    COMMAND ${CMAKE_COMMAND} --build . --target install-python-bindings
+#    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/SWIGZincPackage/src/build_swigzinc-build
+#    DEPENDS build_swigzinc
+#)
 
