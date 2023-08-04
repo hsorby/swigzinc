@@ -15,5 +15,8 @@ cd build-nonpython/ZincLibrary/src/build_zinc-build
 cmake . > zinc_config.out
 
 cd -
-export ZINC_VERSION_TAG=`python3.10 res/scrape_zinc_version.py build-nonpython/ZincLibrary/src/build_zinc-build/zinc_config.out`
-echo "Exporting Zinc version tag as $ZINC_VERSION_TAG." 
+ZINC_VERSION_TAG=`python3.10 res/scrape_zinc_version.py build-nonpython/ZincLibrary/src/build_zinc-build/zinc_config.out`
+echo "Saving Zinc version tag as $ZINC_VERSION_TAG."
+ 
+echo "v$ZINC_VERSION_TAG" >> env_variables.txt
+
