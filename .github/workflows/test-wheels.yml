@@ -1,0 +1,29 @@
+name: Test wheels
+
+on:
+  workflow_dispatch
+
+jobs:
+  test_wheels:
+    name: Test wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04]
+        py: [3.10]
+        include:
+          - name: 'Linux'
+            os: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '${{ matrix.py }}'
+
+      - name: Extract wheels
+        run: |
+          curl -o artifacts.zip https://github.com/hsorby/swigzinc/suites/14822586321/artifacts/843866577
+          unzip artifacts.zip
+          ls artifacts
