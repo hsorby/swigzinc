@@ -33,4 +33,4 @@ jobs:
 
           ls artifact*
           unzip artifact.zip
-          ls artifact/
+          ls
