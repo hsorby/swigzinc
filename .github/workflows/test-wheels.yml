@@ -28,7 +28,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             -H "Authorization: Bearer ${{ secrets.DOWNLOAD_ARTIFACT_PAT }}" \
-             --output artifact.zip
+             --output artifact.zip \
             https://api.github.com/repos/hsorby/swigzinc/actions/artifacts/843866577/zip
 
           ls artifact*
