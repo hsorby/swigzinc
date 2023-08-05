@@ -34,7 +34,7 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             -H "Authorization: Bearer ${{ secrets.DOWNLOAD_ARTIFACT_PAT }}" \
              --output artifact.zip \
-            https://api.github.com/repos/hsorby/swigzinc/actions/artifacts/${{ artifact_id }}/zip
+            https://api.github.com/repos/hsorby/swigzinc/actions/artifacts/${{ inputs.artifact_id }}/zip
 
           ls artifact*
           unzip artifact.zip
