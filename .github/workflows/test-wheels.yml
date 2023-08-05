@@ -24,6 +24,7 @@ jobs:
 
       - name: Extract wheels
         run: |
-          curl -o artifacts.zip https://github.com/hsorby/swigzinc/suites/14822586321/artifacts/843866577
+          curl https://github.com/hsorby/swigzinc/suites/14822586321/artifacts/843866577
+          ls artifacts*
           unzip artifacts.zip
           ls artifacts
