@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup OpenGL
         run: |
-            apt-get install libopengl0
+            sudo apt-get install libopengl0
 
       - name: Test import
         run: |
