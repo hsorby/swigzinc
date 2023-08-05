@@ -39,19 +39,12 @@ if os.path.isfile(env_variables_file):
         content = f.read()
 
     for line in content.split("\n"):
-        print("line:", line)
         version_line = line.strip()
-        print(version_line, version_line.startswith("v"))
         if version_line.startswith("v"):
             tag = version_line.strip()
 else:
     tag = os.environ.get("ZINC_VERSION_TAG", "v0.0.0")
 
-print("=======================")
-print(os.getcwd())
-print(os.path.isfile("env_variables.txt"))
-print(os.path.isfile("res/env_variables.txt"))
-print(tag)
 
 setup(
     name="cmlibs.zinc",
