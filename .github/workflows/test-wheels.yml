@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup OpenGL
         run: |
-            sudo apt-get install libopengl0
+            sudo apt-get install libopengl0 libglu1-mesa
 
       - name: Test import
         run: |
