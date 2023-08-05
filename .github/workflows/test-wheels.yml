@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
-        py: ['3.10']
+        py: ['3.9', '3.10', '3.11']
         include:
           - name: 'Linux'
             os: ubuntu-22.04
