@@ -34,3 +34,12 @@ jobs:
           ls artifact*
           unzip artifact.zip
           ls
+
+      - name: Install wheel
+        run: |
+          pip install cmlibs.zinc-4.0.1-cp310-cp310-manylinux_2_28_x86_64.whl
+
+
+      - name: Test import
+        run: |
+           python -c "from cmlibs.zinc.context import Context"
