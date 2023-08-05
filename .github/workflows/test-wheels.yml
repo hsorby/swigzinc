@@ -1,7 +1,12 @@
 name: Test wheels
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      artifact_id:
+        description: 'ID of the qrtifact'
+        required: true
+        type: string
 
 jobs:
   test_wheels:
@@ -29,7 +34,7 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             -H "Authorization: Bearer ${{ secrets.DOWNLOAD_ARTIFACT_PAT }}" \
              --output artifact.zip \
-            https://api.github.com/repos/hsorby/swigzinc/actions/artifacts/843866577/zip
+            https://api.github.com/repos/hsorby/swigzinc/actions/artifacts/${{ artifact_id }}/zip
 
           ls artifact*
           unzip artifact.zip
@@ -37,7 +42,9 @@ jobs:
 
       - name: Install wheel
         run: |
-          pip install cmlibs.zinc-4.0.1-cp310-cp310-manylinux_2_28_x86_64.whl
+          py_ver=${{ matrix.py }}
+          py_num=${py_ver/./}
+          pip install cmlibs.zinc-*-cp${py_num}-cp${py_num}-manylinux_2_28_x86_64.whl
 
       - name: Setup OpenGL
         run: |
