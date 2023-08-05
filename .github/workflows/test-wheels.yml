@@ -10,7 +10,7 @@ on:
 
 jobs:
   test_wheels:
-    name: Test wheels on ${{ matrix.os }}
+    name: Test wheels on ${{ matrix.os }} - py${{ matrix.py }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
