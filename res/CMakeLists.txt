@@ -5,7 +5,8 @@ project(SWIGZinc-CIBuild)
 
 include(ExternalProject)
 
-message(STATUS "Running build.")
+message(STATUS "Running build for non-python reliant libraries.")
+message(STATUS "Release tag: ${RELEASE_TAG}")
 
 set(OCD_DIR "${CMAKE_CURRENT_BINARY_DIR}/ocd")
 file(MAKE_DIRECTORY ${OCD_DIR})
@@ -23,7 +24,7 @@ ExternalProject_Add(build_zinc
   DEPENDS build_dependencies
   PREFIX ZincLibrary
   GIT_REPOSITORY "https://github.com/CMLibs/Zinc.git"
-  GIT_TAG release
+  GIT_TAG ${RELEASE_TAG}
   GIT_SHALLOW TRUE
   CMAKE_ARGS -DCMLIBSDEPENDENCIES_DIR=${OCD_DIR}/install/
   INSTALL_COMMAND ""
