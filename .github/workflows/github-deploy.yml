@@ -46,10 +46,6 @@ jobs:
         with:
           package-dir: res
 
-      - name: Setup tmate session
-        if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
-
       - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
