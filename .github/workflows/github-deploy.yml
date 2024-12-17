@@ -11,7 +11,7 @@ on:
 jobs:
   build_wheels:
 
-    if: github.repository == 'cmlibs/swigzinc'
+    if: github.repository == 'hsorby/swigzinc'
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
@@ -45,6 +45,10 @@ jobs:
         # valid inputs are ['package-dir', 'output-dir', 'config-file', 'only']
         with:
           package-dir: res
+
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
 
       - uses: actions/upload-artifact@v3
         with:
