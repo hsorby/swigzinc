@@ -53,7 +53,7 @@ jobs:
           cmake -S . \
                 -B build-swigzinc-release \
                 -DCMAKE_BUILD_TYPE=Release \
-                -DZinc_DIR=${{ github.workspace }}/zinc-install
+                -DZinc_DIR=${{ github.workspace }}/zinc-install/share/cmake/ZINC
 
       - name: 6. Build SwigZinc C++ components
         run: |
