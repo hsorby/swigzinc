@@ -50,7 +50,7 @@ jobs:
 
       - name: 5. Configure SwigZinc build with CMake
         run: |
-          cmake -S swigzinc/ \
+          cmake -S . \
                 -B build-swigzinc-release \
                 -DCMAKE_BUILD_TYPE=Release \
                 -DZINC_DIR=${{ github.workspace }}/zinc-install
