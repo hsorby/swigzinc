@@ -62,16 +62,9 @@ jobs:
       - name: 7. Build Python wheel
         id: build_wheel
         run: |
-          ls
-          echo "-"
-          ls src
-          echo "-"
-          ls src/python
-          echo "-"
-          find . -name setup.py
-          python -m build --wheel src/python
+          python -m build --wheel build-swigzinc-release/src/python
           
-          WHEEL_PATH=$(ls src/python/dist/*.whl)
+          WHEEL_PATH=$(ls build-swigzinc-release/src/python/dist/*.whl)
           echo "Built wheel at: ${WHEEL_PATH}"
           echo "ARTIFACT_PATH=${WHEEL_PATH}" >> $GITHUB_ENV
 
