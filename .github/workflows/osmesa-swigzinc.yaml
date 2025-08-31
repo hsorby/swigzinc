@@ -12,6 +12,7 @@ on:
 jobs:
   build-python-wheels:
     name: Build SwigZinc for Python ${{ matrix.python-version }} on Linux
+    if: github.repository == 'cmlibs/swigzinc'
     runs-on: ubuntu-24.04
     
     # Define a build matrix to run this job for multiple Python versions
@@ -37,7 +38,7 @@ jobs:
 
       - name: 4. Download and Extract Zinc C++ Library
         run: |
-          ZINC_URL="https://github.com/hsorby/zinc/releases/download/osmesa/zinc-osmesa-linux.tar.gz"
+          ZINC_URL="https://github.com/cmlibs/zinc/releases/download/osmesa/zinc-osmesa-linux.tar.gz"
           
           echo "Downloading Zinc library from ${ZINC_URL}"
           curl -L -o zinc-dependency.tar.gz "${ZINC_URL}"
